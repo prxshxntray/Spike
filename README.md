@@ -75,3 +75,9 @@ Optional paper links are stored in each lesson, outside its main teaching flow. 
 - Mobile browser checks cover lesson completion, prerequisite diagnosis and retry, glossary and feedback, export/reset/import, invalid import, Izhikevich presets, KaTeX rendering, ChatGPT handoff, offline reload, and recovery from a stale localStorage mirror.
 - Local mobile Lighthouse: Performance 100, Accessibility 100, Best Practices 100; FCP/LCP approximately 0.9 seconds and CLS 0 in that run. These are local browser measurements, not a physical iPhone or hosted network benchmark. Current Lighthouse has no separate PWA category; manifest assets and production offline behavior are checked directly.
 - Physical iPhone installation, audible output, and real commute use still require your device. The in-app installation guide includes an airplane-mode check.
+
+## Personal-first scope
+
+See `docs/personal-first.md` for the product requirements and the user's validation evidence. Subscriptions, third-party product analytics, monetization, and unnecessary backend work are outside the current scope. Local learning evidence remains part of the review engine.
+
+The Get Spike on your iPhone action now contains the actual deployed link, a copy action, and a desktop QR code. The QR is generated inside the app without an external service. For a different deployment origin, set `VITE_APP_URL` to that HTTPS URL before building; otherwise it points to the existing private Spike site.
