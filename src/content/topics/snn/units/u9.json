@@ -1,0 +1,42 @@
+{
+  "id": "u9",
+  "title": "Events & hardware",
+  "levels": [
+    {
+      "id": "l34",
+      "number": 34,
+      "title": "Event cameras as spike sources",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    },
+    {
+      "id": "l35",
+      "number": 35,
+      "title": "Loihi, SpiNNaker, and TrueNorth",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    },
+    {
+      "id": "l36",
+      "number": 36,
+      "title": "Energy: operations and memory",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    }
+  ]
+}

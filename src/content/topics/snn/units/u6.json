@@ -1,0 +1,248 @@
+{
+  "id": "u6",
+  "title": "Channels & synapses",
+  "levels": [
+    {
+      "id": "l26",
+      "number": 26,
+      "title": "Channels are changing gates",
+      "type": "lesson",
+      "concepts": [
+        "hh"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "The beaker now has several gated pipes. Each pipe’s flow depends on its opening and on the difference between water level and that pipe’s preferred level. This is a conceptual analogy for conductances and reversal potentials."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "With conductance g = 2 and voltage difference V − E = 3, outward current is 6 in consistent units. At V = E, net current through that channel is zero even if the channel is open."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "I_{\\mathrm{ion}}=g(V-E)",
+            "C_m\\dot V=I_{\\mathrm{ext}}-\\sum I_{\\mathrm{ion}}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l26-q0",
+          "kind": "number",
+          "prompt": "g = 3 and V − E = 2. Outward current in consistent units?",
+          "answer": 6,
+          "why": "3 × 2 = 6.",
+          "concept": "hh",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l26-q1",
+          "kind": "single",
+          "prompt": "An open channel at its reversal potential has…",
+          "answer": "0",
+          "why": "The driving force V − E is zero.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Zero net current"
+            },
+            {
+              "id": "1",
+              "text": "Necessarily maximum net current"
+            }
+          ],
+          "concept": "hh",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l26-r0",
+          "kind": "number",
+          "prompt": "g = 4, V − E = −2. Current?",
+          "answer": -8,
+          "why": "4 × −2 = −8: negative under the outward-positive convention.",
+          "concept": "hh",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l26-r1",
+          "kind": "single",
+          "prompt": "In Hodgkin–Huxley, gating variables represent…",
+          "answer": "0",
+          "why": "Gating changes conductance over time.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Channel opening dynamics"
+            },
+            {
+              "id": "1",
+              "text": "Neuron class labels"
+            }
+          ],
+          "concept": "hh",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Conductance",
+          "meaning": "How readily current flows through a pathway."
+        },
+        {
+          "term": "Reversal potential",
+          "meaning": "The voltage where a channel’s net current changes sign."
+        },
+        {
+          "term": "Gating variable",
+          "meaning": "A state describing channel activation or inactivation."
+        },
+        {
+          "term": "Hodgkin–Huxley model",
+          "meaning": "A conductance-based membrane model with voltage-dependent channel gates."
+        }
+      ],
+      "goDeeper": [
+        {
+          "title": "Neuronal Dynamics · ion channels",
+          "url": "https://neuronaldynamics.epfl.ch/online/Ch2.html",
+          "note": "Conductance-based dynamics and channel gating."
+        }
+      ]
+    },
+    {
+      "id": "l27",
+      "number": 27,
+      "title": "A synapse has a shape in time",
+      "type": "lesson",
+      "concepts": [
+        "synapse"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "A synaptic event can open a tap whose flow fades. In a current-based model the injected current is specified directly. In a conductance-based model, flow also depends on the beaker’s present level relative to a reversal level."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "If g = 0.5 and E − V = 4, inward-positive synaptic current is 2. If the voltage difference shrinks to 1, the same conductance produces 0.5."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "I_{\\mathrm{syn}}=g_{\\mathrm{syn}}(E_{\\mathrm{syn}}-V)",
+            "\\alpha(t)=\\frac{t}{\\tau}e^{1-t/\\tau}\\quad(t\\ge0)"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l27-q0",
+          "kind": "number",
+          "prompt": "g = 0.2, E − V = 5. Inward-positive synaptic current?",
+          "answer": 1,
+          "why": "0.2 × 5 = 1.",
+          "concept": "synapse",
+          "requires": [
+            "hh"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l27-q1",
+          "kind": "single",
+          "prompt": "With fixed conductance, current changes when membrane voltage changes because…",
+          "answer": "0",
+          "why": "Conductance-based current depends on E − V.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Driving force changes"
+            },
+            {
+              "id": "1",
+              "text": "The weight must have learned"
+            }
+          ],
+          "concept": "synapse",
+          "requires": [
+            "hh"
+          ],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l27-r0",
+          "kind": "number",
+          "prompt": "g = 0.4, E − V = 3. Current?",
+          "answer": 1.2,
+          "why": "0.4 × 3 = 1.2.",
+          "concept": "synapse",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l27-r1",
+          "kind": "single",
+          "prompt": "An alpha synapse typically has a response that…",
+          "answer": "0",
+          "why": "The t factor creates a rise before exponential decay dominates.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Rises then falls"
+            },
+            {
+              "id": "1",
+              "text": "Stays constant forever"
+            }
+          ],
+          "concept": "synapse",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Current-based synapse",
+          "meaning": "A model injecting a prescribed current waveform."
+        },
+        {
+          "term": "Conductance-based synapse",
+          "meaning": "A model where current also depends on membrane driving force."
+        },
+        {
+          "term": "Alpha synapse",
+          "meaning": "A synaptic waveform with a rise followed by decay."
+        }
+      ],
+      "goDeeper": [
+        {
+          "title": "Neuronal Dynamics · synapses",
+          "url": "https://neuronaldynamics.epfl.ch/online/Ch3.S1.html",
+          "note": "Synaptic current and conductance dynamics."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "u7",
+  "title": "Training through time",
+  "levels": [
+    {
+      "id": "l28",
+      "number": 28,
+      "title": "BPTT through time steps",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    },
+    {
+      "id": "l29",
+      "number": 29,
+      "title": "Surrogate shapes: fast sigmoid and arctan",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    },
+    {
+      "id": "l30",
+      "number": 30,
+      "title": "ANN → SNN conversion",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    }
+  ]
+}

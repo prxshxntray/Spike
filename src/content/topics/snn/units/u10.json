@@ -1,0 +1,78 @@
+{
+  "id": "u10",
+  "title": "Toward research",
+  "levels": [
+    {
+      "id": "l37",
+      "number": 37,
+      "title": "Spiking transformers",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    },
+    {
+      "id": "l38",
+      "number": 38,
+      "title": "SNN state-space models",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    },
+    {
+      "id": "l39",
+      "number": 39,
+      "title": "Frontier tour: reading claims critically",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    },
+    {
+      "id": "l40",
+      "number": 40,
+      "title": "Reproduce a baseline",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    },
+    {
+      "id": "l41",
+      "number": 41,
+      "title": "Design an ablation",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    },
+    {
+      "id": "l42",
+      "number": 42,
+      "title": "Write a research question",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    }
+  ]
+}

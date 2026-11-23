@@ -1,0 +1,1191 @@
+{
+  "id": "u1",
+  "title": "The spiking neuron",
+  "levels": [
+    {
+      "id": "l1",
+      "number": 1,
+      "title": "A little leaks away",
+      "type": "lesson",
+      "concepts": [
+        "leak"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Think of membrane potential as water in a beaker. Between pours, a drain removes a fraction of the water. β is the fraction KEPT, not lost."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "Start at 0.5. Keep 90%: 0.5 × 0.9 = 0.45. Keep 90% again: 0.45 × 0.9 = 0.405. No input, no threshold crossing."
+        },
+        {
+          "kind": "tracker",
+          "title": "One step at a time",
+          "columns": [
+            "Step",
+            "Input",
+            "Water",
+            "Spike?",
+            "Note"
+          ],
+          "rows": [
+            [
+              "0",
+              "0",
+              "0.5",
+              "No",
+              "Start"
+            ],
+            [
+              "1",
+              "0",
+              "0.45",
+              "No",
+              "Keep 90%"
+            ],
+            [
+              "2",
+              "0",
+              "0.405",
+              "No",
+              "Keep 90% again"
+            ]
+          ]
+        },
+        {
+          "kind": "sim",
+          "title": "Try it yourself",
+          "simId": "beaker",
+          "body": "Change one thing. Predict what will happen, then test it."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "v_{t+1}=\\beta v_t",
+            "\\beta=0.9\\quad\\Rightarrow\\quad 1-\\beta=0.1"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l1-q0",
+          "kind": "number",
+          "prompt": "Start at 0.8, β = 0.5. What is the level after two steps with no input?",
+          "answer": 0.2,
+          "why": "0.8 → 0.4 → 0.2.",
+          "concept": "leak",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l1-q1",
+          "kind": "single",
+          "prompt": "Which beaker forgets its starting water faster?",
+          "answer": "0",
+          "why": "Keeping 60% loses 40% per step; keeping 95% loses only 5%.",
+          "options": [
+            {
+              "id": "0",
+              "text": "β = 0.6"
+            },
+            {
+              "id": "1",
+              "text": "β = 0.95"
+            }
+          ],
+          "concept": "leak",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l1-r0",
+          "kind": "number",
+          "prompt": "Start at 0.6, β = 0.5. What remains after one step?",
+          "answer": 0.3,
+          "why": "Multiply by the kept fraction: 0.6 × 0.5.",
+          "concept": "leak",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l1-r1",
+          "kind": "single",
+          "prompt": "β = 0.8. What fraction is lost each step?",
+          "answer": "1",
+          "why": "Lost fraction is 1 − β = 0.2.",
+          "options": [
+            {
+              "id": "0",
+              "text": "80%"
+            },
+            {
+              "id": "1",
+              "text": "20%"
+            }
+          ],
+          "concept": "leak",
+          "requires": [],
+          "misconceptions": {
+            "0": "β is kept. Subtract it from 1 to find the loss."
+          }
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Membrane potential",
+          "meaning": "The neuron’s changing electrical state; our water level."
+        },
+        {
+          "term": "Leak",
+          "meaning": "A tendency for voltage to relax toward rest."
+        },
+        {
+          "term": "Decay factor β",
+          "meaning": "The fraction of the previous state retained per step."
+        },
+        {
+          "term": "LIF",
+          "meaning": "Leaky integrate-and-fire: accumulate, leak, threshold, reset."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l2",
+      "number": 2,
+      "title": "Where the water settles",
+      "type": "lesson",
+      "concepts": [
+        "equilibrium"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "A constant pour competes with the drain. Eventually the incoming water equals what leaks out. Here we temporarily ignore spikes and resets."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "At β = 0.9, the beaker loses 10% each step. A level of 2 loses 0.2, exactly replacing input I = 0.2."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "v_{t+1}=\\beta v_t+I",
+            "v^*=\\beta v^*+I",
+            "v^*=\\frac{I}{1-\\beta}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l2-q0",
+          "kind": "number",
+          "prompt": "With I = 0.3 and β = 0.5, what is the equilibrium without resets?",
+          "answer": 0.6,
+          "why": "0.3 / (1 − 0.5) = 0.6.",
+          "concept": "equilibrium",
+          "requires": [
+            "leak"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l2-q1",
+          "kind": "single",
+          "prompt": "If the level is above equilibrium, what happens without resets?",
+          "answer": "0",
+          "why": "Leak exceeds the constant input above equilibrium.",
+          "options": [
+            {
+              "id": "0",
+              "text": "It tends downward"
+            },
+            {
+              "id": "1",
+              "text": "It grows forever"
+            }
+          ],
+          "concept": "equilibrium",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l2-r0",
+          "kind": "number",
+          "prompt": "I = 0.4, β = 0.8. What is the equilibrium?",
+          "answer": 2,
+          "why": "0.4 / 0.2 = 2.",
+          "concept": "equilibrium",
+          "requires": [
+            "leak"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l2-r1",
+          "kind": "single",
+          "prompt": "Does this equilibrium formula include spike resets?",
+          "answer": "1",
+          "why": "It describes the subthreshold recurrence without resets.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Yes"
+            },
+            {
+              "id": "1",
+              "text": "No"
+            }
+          ],
+          "concept": "equilibrium",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Steady state",
+          "meaning": "A state unchanged by another update."
+        },
+        {
+          "term": "Equilibrium",
+          "meaning": "The balance point between input and leak."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l3",
+      "number": 3,
+      "title": "The tipping line",
+      "type": "lesson",
+      "concepts": [
+        "threshold"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Add a tipping line θ. When water reaches it, the beaker tips: the neuron emits a spike, then resets. We use a hard reset to zero in this lesson."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "With θ = 1, β = 0.9, and constant I = 0.08, the no-reset equilibrium is 0.8. Starting below threshold, this beaker never reaches 1."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "s_{t+1}=H(\\beta v_t+I-\\theta)",
+            "v_{t+1}=0\\;\\text{if a spike occurs}"
+          ]
+        },
+        {
+          "kind": "text",
+          "title": "Keep this distinction",
+          "body": "For v₀ below θ, β between 0 and 1, and this constant-input recurrence, I ≤ (1−β)θ cannot reach threshold in finite exact-arithmetic steps from below. Initial conditions, reset rules, and equality conventions matter."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l3-q0",
+          "kind": "number",
+          "prompt": "β = 0.5, θ = 1, I = 0.4. What equilibrium would the neuron approach without resets?",
+          "answer": 0.8,
+          "why": "0.4 / 0.5 = 0.8, below threshold.",
+          "concept": "threshold",
+          "requires": [
+            "equilibrium",
+            "leak"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l3-q1",
+          "kind": "single",
+          "prompt": "Raise only the threshold under steady positive input. Usually the firing rate…",
+          "answer": "1",
+          "why": "More accumulation is needed per spike.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Increases"
+            },
+            {
+              "id": "1",
+              "text": "Decreases"
+            }
+          ],
+          "concept": "threshold",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l3-r0",
+          "kind": "single",
+          "prompt": "Start below θ = 1; β = 0.8, I = 0.1. Can constant input eventually trigger a spike?",
+          "answer": "1",
+          "why": "The equilibrium is 0.5, below 1.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Yes"
+            },
+            {
+              "id": "1",
+              "text": "No"
+            }
+          ],
+          "concept": "threshold",
+          "requires": [
+            "equilibrium"
+          ],
+          "misconceptions": {}
+        },
+        {
+          "id": "l3-r1",
+          "kind": "number",
+          "prompt": "A neuron emits 4 spikes in 20 steps. What fraction of steps had spikes?",
+          "answer": 0.2,
+          "why": "4 / 20 = 0.2.",
+          "concept": "threshold",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Threshold θ",
+          "meaning": "The state level that triggers a spike."
+        },
+        {
+          "term": "Reset",
+          "meaning": "The state change immediately after a spike."
+        },
+        {
+          "term": "Spike",
+          "meaning": "A discrete output event."
+        },
+        {
+          "term": "Firing rate",
+          "meaning": "Spike count divided by elapsed time or steps."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l4",
+      "number": 4,
+      "title": "The sticky-note reference",
+      "type": "lesson",
+      "concepts": [
+        "delta"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Delta encoding keeps a sticky note: the last SENT reconstruction, not the last reading. Emit an UP or DOWN event when the reading differs from that note by at least θ."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "r = 20, θ = 1. Readings 20.3, 20.6, 20.9 produce no event. At 21.2 send UP; update r to 21, leaving a 0.2 residual. We allow one event per reading here."
+        },
+        {
+          "kind": "tracker",
+          "title": "One step at a time",
+          "columns": [
+            "Reading",
+            "x − r",
+            "Event",
+            "New r",
+            "Residual"
+          ],
+          "rows": [
+            [
+              "20.3",
+              "0.3",
+              "None",
+              "20",
+              "0.3"
+            ],
+            [
+              "20.6",
+              "0.6",
+              "None",
+              "20",
+              "0.6"
+            ],
+            [
+              "20.9",
+              "0.9",
+              "None",
+              "20",
+              "0.9"
+            ],
+            [
+              "21.2",
+              "1.2",
+              "UP",
+              "21",
+              "0.2"
+            ]
+          ]
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "\\Delta=x-r",
+            "r\\leftarrow r+\\theta\\quad\\text{on UP}",
+            "r\\leftarrow r-\\theta\\quad\\text{on DOWN}"
+          ]
+        },
+        {
+          "kind": "text",
+          "title": "Keep this distinction",
+          "body": "Some encoders emit several events for a large jump until the residual is below θ. Every exercise here explicitly uses at most one event per reading."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l4-q0",
+          "kind": "number",
+          "prompt": "r = 30, θ = 2. Readings: 30.8, 31.4, 32.3. After one UP event, what is r?",
+          "answer": 32,
+          "why": "Reference moves by θ from 30 to 32; it does not become 32.3.",
+          "concept": "delta",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l4-q1",
+          "kind": "single",
+          "prompt": "r = 50, θ = 1, reading = 48.7. Which event and new reference?",
+          "answer": "1",
+          "why": "48.7 − 50 is negative. Send DOWN and subtract exactly 1.",
+          "options": [
+            {
+              "id": "0",
+              "text": "UP, r = 51"
+            },
+            {
+              "id": "1",
+              "text": "DOWN, r = 49"
+            },
+            {
+              "id": "2",
+              "text": "DOWN, r = 48.7"
+            }
+          ],
+          "concept": "delta",
+          "requires": [],
+          "misconceptions": {
+            "0": "Read minus reference gives −1.3, so the direction is DOWN.",
+            "2": "The note moves by one threshold, not to the raw reading."
+          }
+        },
+        {
+          "id": "l4-q2",
+          "kind": "number",
+          "prompt": "r = 10, θ = 1. Readings 10.4, 10.8, 11.1. At which reading number is the first event?",
+          "answer": 3,
+          "why": "Compare all three readings to the unchanged note, 10.",
+          "concept": "delta",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "retries": [
+        {
+          "id": "l4-r0",
+          "kind": "number",
+          "prompt": "r = 12, θ = 0.5, reading = 11.3. After one DOWN event, what is r?",
+          "answer": 11.5,
+          "why": "12 − 0.5 = 11.5, leaving residual −0.2.",
+          "concept": "delta",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l4-r1",
+          "kind": "single",
+          "prompt": "r = 5, θ = 1. Readings 5.4 then 5.8. What happens?",
+          "answer": "0",
+          "why": "Neither reading is a full unit from the last sent reference.",
+          "options": [
+            {
+              "id": "0",
+              "text": "No events; r stays 5"
+            },
+            {
+              "id": "1",
+              "text": "No events; r becomes 5.8"
+            },
+            {
+              "id": "2",
+              "text": "One UP event"
+            }
+          ],
+          "concept": "delta",
+          "requires": [],
+          "misconceptions": {
+            "1": "A silent reading never updates the sticky note.",
+            "2": "5.8 − 5 = 0.8, below threshold."
+          }
+        },
+        {
+          "id": "l4-r2",
+          "kind": "number",
+          "prompt": "r = 8, θ = 2, reading = 10.7. After one UP, what residual x − r remains?",
+          "answer": 0.7,
+          "why": "The new r is 10. Residual is 10.7 − 10 = 0.7.",
+          "concept": "delta",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Reference value",
+          "meaning": "The reconstructed value represented by emitted events."
+        },
+        {
+          "term": "Delta modulation",
+          "meaning": "Encoding changes relative to a maintained reference."
+        },
+        {
+          "term": "Sigma-delta",
+          "meaning": "A related family using accumulated quantization error; implementations vary."
+        },
+        {
+          "term": "ON/OFF polarity",
+          "meaning": "The positive or negative direction of an event."
+        },
+        {
+          "term": "Residual",
+          "meaning": "The part of the change not yet represented by events."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l5",
+      "number": 5,
+      "title": "One spike, many pours",
+      "type": "lesson",
+      "concepts": [
+        "synops"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "A spike travels along connections. Each connection pours its weight into a target beaker. One event can therefore cause many synaptic operations."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "One spike reaching 128 target neurons triggers 128 SynOps. Three spikes with the same fan-out trigger 384."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "\\mathrm{SynOps}=\\mathrm{spikes}\\times\\mathrm{fan\\!\\!\\! -\\!out}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l5-q0",
+          "kind": "number",
+          "prompt": "5 spikes, each with fan-out 64. How many SynOps?",
+          "answer": 320,
+          "why": "5 × 64 = 320.",
+          "concept": "synops",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l5-q1",
+          "kind": "single",
+          "prompt": "A negative synaptic weight usually does what to the receiving beaker?",
+          "answer": "1",
+          "why": "An inhibitory input pushes the membrane state downward.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Adds water"
+            },
+            {
+              "id": "1",
+              "text": "Reduces its state"
+            }
+          ],
+          "concept": "synops",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l5-r0",
+          "kind": "number",
+          "prompt": "2 spikes with fan-out 96: how many SynOps?",
+          "answer": 192,
+          "why": "2 × 96 = 192.",
+          "concept": "synops",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l5-r1",
+          "kind": "single",
+          "prompt": "Double fan-out with the same spike count. SynOps…",
+          "answer": "0",
+          "why": "Every event touches twice as many connections.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Double"
+            },
+            {
+              "id": "1",
+              "text": "Stay equal"
+            }
+          ],
+          "concept": "synops",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Synaptic weight",
+          "meaning": "The strength and sign of a connection."
+        },
+        {
+          "term": "Fan-out",
+          "meaning": "The number of outgoing target connections."
+        },
+        {
+          "term": "Synaptic operation",
+          "meaning": "One event processed at one synapse."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l6",
+      "number": 6,
+      "title": "When sparsity pays",
+      "type": "lesson",
+      "concepts": [
+        "energy"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Tipping rarely can reduce event processing. But counting tips alone misses the cost of updating beakers and moving state. Energy depends on the implementation."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "In a hypothetical setup with break-even rate 6.4%, a rate of 8.3% is above the budget. That setup would favor its ANN baseline; these percentages are not universal constants."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "E_{\\mathrm{SNN}}=N_{\\mathrm{SynOp}}E_{\\mathrm{AC}}+E_{\\mathrm{state}}+E_{\\mathrm{memory}}"
+          ]
+        },
+        {
+          "kind": "text",
+          "title": "Keep this distinction",
+          "body": "The 6.4% figure from your brief is treated as an illustrative setup assumption, not an attributed research result: no specific study was supplied."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l6-q0",
+          "kind": "single",
+          "prompt": "A measured setup breaks even at 6.4%. Its SNN runs at 8.3%. Under that setup, which is cheaper?",
+          "answer": "1",
+          "why": "8.3% exceeds the setup-specific break-even rate.",
+          "options": [
+            {
+              "id": "0",
+              "text": "SNN"
+            },
+            {
+              "id": "1",
+              "text": "ANN baseline"
+            }
+          ],
+          "concept": "energy",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l6-q1",
+          "kind": "multi",
+          "prompt": "Which can change the energy comparison?",
+          "answer": [
+            "0",
+            "1",
+            "2"
+          ],
+          "why": "Operations, memory, and hardware all matter.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Spike activity"
+            },
+            {
+              "id": "1",
+              "text": "Memory traffic"
+            },
+            {
+              "id": "2",
+              "text": "Hardware"
+            },
+            {
+              "id": "3",
+              "text": "Only the model name"
+            }
+          ],
+          "concept": "energy",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l6-r0",
+          "kind": "single",
+          "prompt": "A setup breaks even at 5%. Its SNN is at 3%, all other assumptions fixed. Which side is favored?",
+          "answer": "0",
+          "why": "It is below that setup’s break-even rate.",
+          "options": [
+            {
+              "id": "0",
+              "text": "SNN"
+            },
+            {
+              "id": "1",
+              "text": "ANN"
+            }
+          ],
+          "concept": "energy",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l6-r1",
+          "kind": "number",
+          "prompt": "4 spikes with fan-out 50 cause how many event-driven accumulations?",
+          "answer": 200,
+          "why": "4 × 50 = 200.",
+          "concept": "energy",
+          "requires": [
+            "synops"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Sparsity",
+          "meaning": "How little of a representation or activity is nonzero."
+        },
+        {
+          "term": "MAC",
+          "meaning": "Multiply-and-accumulate operation."
+        },
+        {
+          "term": "AC",
+          "meaning": "Accumulate operation, often used for weighted binary events."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l7",
+      "number": 7,
+      "title": "A window in time",
+      "type": "lesson",
+      "concepts": [
+        "time"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Observe the beaker across a fixed number of steps, not just one snapshot. Events form a sequence across that window."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "A 10% spike fraction over 30 steps means 3 spikes for a neuron. A time step is a simulation increment; it is not automatically one millisecond."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "r_{\\mathrm{step}}=\\frac{N_{\\mathrm{spikes}}}{T}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l7-q0",
+          "kind": "number",
+          "prompt": "A neuron spikes in 20% of 40 steps. How many spikes?",
+          "answer": 8,
+          "why": "0.2 × 40 = 8.",
+          "concept": "time",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l7-q1",
+          "kind": "single",
+          "prompt": "Can you convert 30 simulation steps into seconds without knowing step duration?",
+          "answer": "1",
+          "why": "You need Δt to convert steps to physical time.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Yes"
+            },
+            {
+              "id": "1",
+              "text": "No"
+            }
+          ],
+          "concept": "time",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l7-r0",
+          "kind": "number",
+          "prompt": "3 spikes in 60 steps. What is the spike fraction?",
+          "answer": 0.05,
+          "why": "3 / 60 = 0.05.",
+          "concept": "time",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l7-r1",
+          "kind": "number",
+          "prompt": "A window has 50 steps of 2 ms each. Duration in ms?",
+          "answer": 100,
+          "why": "50 × 2 = 100 ms.",
+          "concept": "time",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Time step",
+          "meaning": "One discrete increment in a simulation."
+        },
+        {
+          "term": "Simulation window T",
+          "meaning": "The number of steps over which activity is measured."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l8",
+      "number": 8,
+      "title": "Why spikes resist gradients",
+      "type": "lesson",
+      "concepts": [
+        "gradient"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "The tip indicator is a switch. A tiny change below the line usually does not change the output. At the line, it jumps abruptly."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "With θ = 1, both 0.8 and 0.81 output 0. At threshold the output jumps to 1. There is no useful ordinary slope for gradient learning."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "s=H(v-\\theta)",
+            "\\frac{ds}{dv}=0\\quad(v\\ne\\theta)"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l8-q0",
+          "kind": "single",
+          "prompt": "Away from threshold, the ordinary derivative of the hard spike function is…",
+          "answer": "0",
+          "why": "On either flat side a small voltage change leaves the binary output unchanged.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Zero"
+            },
+            {
+              "id": "1",
+              "text": "One"
+            }
+          ],
+          "concept": "gradient",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l8-q1",
+          "kind": "single",
+          "prompt": "At the jump, its ordinary derivative is…",
+          "answer": "1",
+          "why": "A discontinuity has no ordinary derivative there.",
+          "options": [
+            {
+              "id": "0",
+              "text": "A useful finite slope"
+            },
+            {
+              "id": "1",
+              "text": "Undefined"
+            }
+          ],
+          "concept": "gradient",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l8-r0",
+          "kind": "single",
+          "prompt": "Move voltage from 0.3 to 0.31 with θ = 1. The hard spike output…",
+          "answer": "0",
+          "why": "Both values are below threshold.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Stays zero"
+            },
+            {
+              "id": "1",
+              "text": "Changes continuously"
+            }
+          ],
+          "concept": "gradient",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l8-r1",
+          "kind": "single",
+          "prompt": "Why is the exact hard-spike derivative unhelpful for backpropagation?",
+          "answer": "0",
+          "why": "Zero gradients prevent ordinary updates through the spike decision.",
+          "options": [
+            {
+              "id": "0",
+              "text": "It is zero away from the jump"
+            },
+            {
+              "id": "1",
+              "text": "It is too expensive to store"
+            }
+          ],
+          "concept": "gradient",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Non-differentiability",
+          "meaning": "A point where an ordinary derivative does not exist."
+        },
+        {
+          "term": "Heaviside function",
+          "meaning": "A step function used to model a binary spike decision."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l9",
+      "number": 9,
+      "title": "A useful pretend slope",
+      "type": "lesson",
+      "concepts": [
+        "surrogate"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Keep the real tipping switch when running the neuron. During backward learning, replace its unusable slope with a smooth proxy near the line."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "A hard decision still outputs 0 or 1. A chosen proxy might give backward slope 1 at threshold and 0.25 one scaled unit away."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "s=H(v-\\theta)\\quad\\text{forward}",
+            "\\frac{\\partial s}{\\partial v}\\approx\\frac{1}{(1+k|v-\\theta|)^2}\\quad\\text{backward}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l9-q0",
+          "kind": "single",
+          "prompt": "A surrogate gradient changes which part?",
+          "answer": "0",
+          "why": "The forward spike can remain hard and binary.",
+          "options": [
+            {
+              "id": "0",
+              "text": "The backward derivative"
+            },
+            {
+              "id": "1",
+              "text": "Every forward spike into a probability"
+            }
+          ],
+          "concept": "surrogate",
+          "requires": [
+            "gradient"
+          ],
+          "misconceptions": {}
+        },
+        {
+          "id": "l9-q1",
+          "kind": "number",
+          "prompt": "For k = 1 and |v−θ| = 1, what is this proxy slope?",
+          "answer": 0.25,
+          "why": "1 / (1 + 1)² = 0.25.",
+          "concept": "surrogate",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "retries": [
+        {
+          "id": "l9-r0",
+          "kind": "single",
+          "prompt": "Does a nonzero surrogate slope prove the forward neuron spiked?",
+          "answer": "1",
+          "why": "The proxy is for learning, not a record of an event.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Yes"
+            },
+            {
+              "id": "1",
+              "text": "No"
+            }
+          ],
+          "concept": "surrogate",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l9-r1",
+          "kind": "number",
+          "prompt": "k = 1, |v−θ| = 0. What is the proxy slope?",
+          "answer": 1,
+          "why": "1 / (1 + 0)² = 1.",
+          "concept": "surrogate",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Surrogate gradient",
+          "meaning": "A proxy derivative used for a hard spike function."
+        },
+        {
+          "term": "Straight-through estimator",
+          "meaning": "A backward approximation through a discrete operation."
+        },
+        {
+          "term": "Fast sigmoid surrogate",
+          "meaning": "A commonly used proxy with a concentrated slope near threshold."
+        }
+      ],
+      "goDeeper": [
+        {
+          "title": "snnTorch surrogate documentation",
+          "url": "https://snntorch.readthedocs.io/en/stable/snntorch.surrogate.html",
+          "note": "Definitions and implementation choices for proxy gradients."
+        }
+      ]
+    }
+  ]
+}

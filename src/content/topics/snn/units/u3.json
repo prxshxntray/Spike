@@ -1,0 +1,759 @@
+{
+  "id": "u3",
+  "title": "Learning with spikes",
+  "levels": [
+    {
+      "id": "l14",
+      "number": 14,
+      "title": "Timing changes the connection",
+      "type": "lesson",
+      "concepts": [
+        "stdp"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "If one beaker’s event helps another tip soon after, strengthen their connection in a conventional pair-based STDP rule. Reverse their order and weaken it."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "Pre at 10 ms, post at 15 ms gives Δt = +5 ms: potentiation. Post at 10 ms, pre at 15 ms gives Δt = −5 ms: depression."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "\\Delta t=t_{\\mathrm{post}}-t_{\\mathrm{pre}}",
+            "\\Delta t>0\\Rightarrow\\mathrm{LTP}\\quad\\Delta t<0\\Rightarrow\\mathrm{LTD}"
+          ]
+        },
+        {
+          "kind": "text",
+          "title": "Keep this distinction",
+          "body": "This is the conventional pair-based timing rule. Biological and model-specific STDP rules can have different windows and dependencies."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l14-q0",
+          "kind": "single",
+          "prompt": "Pre fires at 12 ms; post at 17 ms. Conventional pair STDP predicts…",
+          "answer": "0",
+          "why": "Pre precedes post by 5 ms.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Strengthening"
+            },
+            {
+              "id": "1",
+              "text": "Weakening"
+            }
+          ],
+          "concept": "stdp",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l14-q1",
+          "kind": "single",
+          "prompt": "Post at 8 ms; pre at 11 ms predicts…",
+          "answer": "1",
+          "why": "Post precedes pre: Δt is negative.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Strengthening"
+            },
+            {
+              "id": "1",
+              "text": "Weakening"
+            }
+          ],
+          "concept": "stdp",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l14-r0",
+          "kind": "single",
+          "prompt": "Pre at 20 ms; post at 22 ms predicts…",
+          "answer": "0",
+          "why": "Positive post-minus-pre timing gives potentiation.",
+          "options": [
+            {
+              "id": "0",
+              "text": "LTP"
+            },
+            {
+              "id": "1",
+              "text": "LTD"
+            }
+          ],
+          "concept": "stdp",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l14-r1",
+          "kind": "number",
+          "prompt": "Pre = 14 ms, post = 9 ms. What is Δt in ms?",
+          "answer": -5,
+          "why": "9 − 14 = −5.",
+          "concept": "stdp",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "STDP",
+          "meaning": "Spike-timing-dependent plasticity."
+        },
+        {
+          "term": "LTP",
+          "meaning": "Long-term potentiation: a lasting increase in synaptic strength."
+        },
+        {
+          "term": "LTD",
+          "meaning": "Long-term depression: a lasting decrease in synaptic strength."
+        },
+        {
+          "term": "Local learning rule",
+          "meaning": "An update using information available near the synapse."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l15",
+      "number": 15,
+      "title": "A fading timing trace",
+      "type": "lesson",
+      "concepts": [
+        "trace"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "A recent tip leaves a fading mark. When the other neuron fires, the mark’s remaining strength says how recent the first event was."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "For τ = 10 ms, a gap of 10 ms leaves e⁻¹ ≈ 0.368 of the peak effect; 20 ms leaves about 0.135."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "x(t)=e^{-t/\\tau}",
+            "|\\Delta w|=A e^{-|\\Delta t|/\\tau}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l15-q0",
+          "kind": "number",
+          "prompt": "A trace is 1 and retains 0.5 per step. After two silent steps, what remains?",
+          "answer": 0.25,
+          "why": "1 → 0.5 → 0.25.",
+          "concept": "trace",
+          "requires": [
+            "leak"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l15-q1",
+          "kind": "single",
+          "prompt": "Same STDP branch and amplitude: which gap has a larger update?",
+          "answer": "0",
+          "why": "Exponential traces are stronger at shorter gaps.",
+          "options": [
+            {
+              "id": "0",
+              "text": "5 ms"
+            },
+            {
+              "id": "1",
+              "text": "25 ms"
+            }
+          ],
+          "concept": "trace",
+          "requires": [
+            "stdp"
+          ],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l15-r0",
+          "kind": "number",
+          "prompt": "A trace of 0.8 keeps 0.5 for one step. What remains?",
+          "answer": 0.4,
+          "why": "0.8 × 0.5 = 0.4.",
+          "concept": "trace",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l15-r1",
+          "kind": "single",
+          "prompt": "Increasing τ makes a continuous exponential trace decay…",
+          "answer": "0",
+          "why": "A larger time constant spreads memory over a longer interval.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Slower"
+            },
+            {
+              "id": "1",
+              "text": "Faster"
+            }
+          ],
+          "concept": "trace",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "STDP window",
+          "meaning": "How a timing gap maps to a synaptic update."
+        },
+        {
+          "term": "Time constant τ",
+          "meaning": "The time for exponential decay to reach 1/e of its initial value."
+        },
+        {
+          "term": "Spike trace",
+          "meaning": "A decaying record of recent spike activity."
+        },
+        {
+          "term": "Eligibility trace",
+          "meaning": "A fading record that can make a synapse eligible for a later update."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l16",
+      "number": 16,
+      "title": "A tag waits for a third signal",
+      "type": "lesson",
+      "concepts": [
+        "rstdp"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Timing leaves an eligibility tag on the connection. A later modulatory signal can turn that tag into a weight change before it fades."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "Eligibility e = 0.4, reward signal R = 0.5, learning rate η = 0.1: Δw = 0.02. With R = 0, the pure three-factor update is zero."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "\\Delta w=\\eta R e"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l16-q0",
+          "kind": "number",
+          "prompt": "η = 0.2, R = 0.5, e = 0.3. What is Δw?",
+          "answer": 0.03,
+          "why": "0.2 × 0.5 × 0.3 = 0.03.",
+          "concept": "rstdp",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l16-q1",
+          "kind": "single",
+          "prompt": "Why can a delayed reward still affect a connection?",
+          "answer": "0",
+          "why": "The fading tag bridges the delay.",
+          "options": [
+            {
+              "id": "0",
+              "text": "An eligibility trace remains"
+            },
+            {
+              "id": "1",
+              "text": "The reward changes the original spike time"
+            }
+          ],
+          "concept": "rstdp",
+          "requires": [
+            "trace"
+          ],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l16-r0",
+          "kind": "number",
+          "prompt": "η = 0.1, e = 0.6, R = 0. What is Δw?",
+          "answer": 0,
+          "why": "No modulatory signal means no update in this pure rule.",
+          "concept": "rstdp",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l16-r1",
+          "kind": "single",
+          "prompt": "A tag that faded almost to zero gives a later reward…",
+          "answer": "0",
+          "why": "The update is proportional to remaining eligibility.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Little effect through that tag"
+            },
+            {
+              "id": "1",
+              "text": "The original full effect"
+            }
+          ],
+          "concept": "rstdp",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Three-factor rule",
+          "meaning": "An update combining pre/post activity with a modulatory signal."
+        },
+        {
+          "term": "Neuromodulator",
+          "meaning": "A signal that changes how neurons or synapses respond."
+        },
+        {
+          "term": "Dopamine",
+          "meaning": "A biological neuromodulator often modeled as a learning signal."
+        },
+        {
+          "term": "Credit assignment",
+          "meaning": "Determining which past activity should receive an update."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l17",
+      "number": 17,
+      "title": "Let one beaker win",
+      "type": "lesson",
+      "concepts": [
+        "wta"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "The first beaker to tip pushes its neighbors’ water down. Competition reduces simultaneous winners, allowing different neurons to specialize."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "A and B are approaching threshold. A spikes first and sends −0.4 to B. If B was at 0.9, its state falls to 0.5."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "v_B\\leftarrow v_B-w_{\\mathrm{inh}}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l17-q0",
+          "kind": "number",
+          "prompt": "B is at 0.85 and receives inhibition of magnitude 0.3. New state?",
+          "answer": 0.55,
+          "why": "0.85 − 0.3 = 0.55.",
+          "concept": "wta",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l17-q1",
+          "kind": "single",
+          "prompt": "WTA competition alone guarantees every neuron wins equally often?",
+          "answer": "1",
+          "why": "A few neurons can dominate unless another mechanism balances them.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Yes"
+            },
+            {
+              "id": "1",
+              "text": "No"
+            }
+          ],
+          "concept": "wta",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l17-r0",
+          "kind": "number",
+          "prompt": "A neighbor has 0.7 and receives −0.2. New state?",
+          "answer": 0.5,
+          "why": "0.7 − 0.2 = 0.5.",
+          "concept": "wta",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l17-r1",
+          "kind": "single",
+          "prompt": "What makes a connection inhibitory here?",
+          "answer": "0",
+          "why": "A negative contribution suppresses threshold crossing.",
+          "options": [
+            {
+              "id": "0",
+              "text": "It pushes the neighbor’s state down"
+            },
+            {
+              "id": "1",
+              "text": "It always increases its rate"
+            }
+          ],
+          "concept": "wta",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Lateral inhibition",
+          "meaning": "Neurons suppressing other neurons in a population."
+        },
+        {
+          "term": "Winner-take-all",
+          "meaning": "Competition that selects one or a small set of active winners."
+        },
+        {
+          "term": "Inhibitory synapse",
+          "meaning": "A connection tending to suppress postsynaptic spiking."
+        },
+        {
+          "term": "Competitive learning",
+          "meaning": "Learning shaped by competition among units."
+        },
+        {
+          "term": "Unsupervised learning",
+          "meaning": "Learning structure without target labels guiding the update."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l18",
+      "number": 18,
+      "title": "Give the quiet ones a chance",
+      "type": "lesson",
+      "concepts": [
+        "homeostasis"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "A frequent winner gets a higher tipping line. A quiet neuron’s extra threshold can relax downward. This helps distribute activity."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "A winner at θ = 1 gains 0.2: θ becomes 1.2. Under the same input, it is now harder to win the next competition."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "\\theta\\leftarrow\\theta+\\delta\\quad\\text{after a spike}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l18-q0",
+          "kind": "single",
+          "prompt": "Disable homeostasis in a competitive network. What can happen?",
+          "answer": "0",
+          "why": "Competition alone does not enforce balanced use.",
+          "options": [
+            {
+              "id": "0",
+              "text": "A few neurons dominate"
+            },
+            {
+              "id": "1",
+              "text": "All neurons must win equally"
+            }
+          ],
+          "concept": "homeostasis",
+          "requires": [
+            "wta"
+          ],
+          "misconceptions": {}
+        },
+        {
+          "id": "l18-q1",
+          "kind": "single",
+          "prompt": "Why raise a frequent winner’s threshold?",
+          "answer": "0",
+          "why": "A higher tipping line requires more input.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Reduce its immediate excitability"
+            },
+            {
+              "id": "1",
+              "text": "Make it fire more easily"
+            }
+          ],
+          "concept": "homeostasis",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l18-r0",
+          "kind": "single",
+          "prompt": "A quiet neuron’s adaptive threshold relaxes. It becomes…",
+          "answer": "0",
+          "why": "Lowering the line increases excitability.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Easier to recruit"
+            },
+            {
+              "id": "1",
+              "text": "Harder to recruit"
+            }
+          ],
+          "concept": "homeostasis",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l18-r1",
+          "kind": "number",
+          "prompt": "Threshold 1.1 receives a 0.3 increment. New threshold?",
+          "answer": 1.4,
+          "why": "1.1 + 0.3 = 1.4.",
+          "concept": "homeostasis",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Homeostasis",
+          "meaning": "Feedback that keeps activity within a useful range."
+        },
+        {
+          "term": "Homeostatic plasticity",
+          "meaning": "Slow adjustments that stabilize activity."
+        },
+        {
+          "term": "Intrinsic plasticity",
+          "meaning": "Changes in a neuron’s own excitability."
+        },
+        {
+          "term": "Adaptive threshold",
+          "meaning": "A threshold that changes with state or activity."
+        },
+        {
+          "term": "Dead-neuron problem",
+          "meaning": "Units receiving little or no activity or useful learning."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l19",
+      "number": 19,
+      "title": "Checkpoint · learning locally",
+      "type": "boss",
+      "concepts": [
+        "stdp",
+        "trace",
+        "rstdp",
+        "wta",
+        "homeostasis"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Separate the jobs: timing creates a synaptic change or tag; inhibition creates competition; homeostasis balances excitability."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "A reward signal does not replace the timing trace. A higher threshold does not replace inhibitory connections."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l19-q0",
+          "kind": "single",
+          "prompt": "Pre at 4 ms, post at 7 ms. Pair STDP predicts…",
+          "answer": "0",
+          "why": "Pre-before-post gives strengthening.",
+          "options": [
+            {
+              "id": "0",
+              "text": "LTP"
+            },
+            {
+              "id": "1",
+              "text": "LTD"
+            }
+          ],
+          "concept": "stdp",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l19-q1",
+          "kind": "number",
+          "prompt": "η = 0.1, e = 0.5, R = −1. What is Δw?",
+          "answer": -0.05,
+          "why": "0.1 × 0.5 × −1 = −0.05.",
+          "concept": "rstdp",
+          "requires": [
+            "trace"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l19-q2",
+          "kind": "single",
+          "prompt": "A few units win every time. Which adjustment directly helps share wins?",
+          "answer": "0",
+          "why": "Homeostatic thresholds reduce repeated dominance.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Raise frequent winners’ thresholds"
+            },
+            {
+              "id": "1",
+              "text": "Lower frequent winners’ thresholds"
+            }
+          ],
+          "concept": "homeostasis",
+          "requires": [
+            "wta"
+          ],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l19-r0",
+          "kind": "single",
+          "prompt": "Post before pre predicts…",
+          "answer": "0",
+          "why": "Negative Δt lies on the depression branch.",
+          "options": [
+            {
+              "id": "0",
+              "text": "LTD"
+            },
+            {
+              "id": "1",
+              "text": "LTP"
+            }
+          ],
+          "concept": "stdp",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l19-r1",
+          "kind": "number",
+          "prompt": "η = 0.2, R = 1, e = 0.2. What is Δw?",
+          "answer": 0.04,
+          "why": "Multiply all three factors.",
+          "concept": "rstdp",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l19-r2",
+          "kind": "single",
+          "prompt": "Which signal directly suppresses neighbors?",
+          "answer": "0",
+          "why": "Inhibition changes the neighbor’s state.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Lateral inhibition"
+            },
+            {
+              "id": "1",
+              "text": "An eligibility tag"
+            }
+          ],
+          "concept": "wta",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Mechanism separation",
+          "meaning": "Knowing which part of a model causes which behavior."
+        }
+      ],
+      "goDeeper": []
+    }
+  ]
+}

@@ -1,0 +1,515 @@
+{
+  "id": "u5",
+  "title": "Networks that learn",
+  "levels": [
+    {
+      "id": "l23",
+      "number": 23,
+      "title": "A network that organizes itself",
+      "type": "lesson",
+      "concepts": [
+        "classifier"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Imagine a row of competing beakers. Inputs arrive as spike trains; one winner inhibits neighbors. Its incoming weights change through timing-based learning."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "The sequence in Diehl & Cook: rate-coded inputs → competitive excitatory neurons → STDP learns receptive fields → adaptive thresholds help share activity. Neuron labels are assigned afterward from labeled examples."
+        },
+        {
+          "kind": "tracker",
+          "title": "One step at a time",
+          "columns": [
+            "Stage",
+            "Input/state",
+            "Mechanism",
+            "Result"
+          ],
+          "rows": [
+            [
+              "1",
+              "Input intensity",
+              "Rate encoding",
+              "Spike trains"
+            ],
+            [
+              "2",
+              "Competing neurons",
+              "Lateral inhibition",
+              "A winner"
+            ],
+            [
+              "3",
+              "Winner’s synapses",
+              "STDP",
+              "Learned receptive field"
+            ],
+            [
+              "4",
+              "Winner’s threshold",
+              "Homeostasis",
+              "Broader participation"
+            ],
+            [
+              "5",
+              "Learned responses",
+              "Label assignment",
+              "Neuron class names"
+            ]
+          ]
+        },
+        {
+          "kind": "text",
+          "title": "Keep this distinction",
+          "body": "This named historical network is the one deliberate example from your brief. The paper reports roughly 95% MNIST accuracy with 6,400 excitatory neurons; that is a result for its particular experiment, not a guarantee for a generic SNN."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l23-q0",
+          "kind": "single",
+          "prompt": "Which mechanism shapes the winner’s incoming template?",
+          "answer": "0",
+          "why": "Timing-dependent synaptic updates learn the receptive field.",
+          "options": [
+            {
+              "id": "0",
+              "text": "STDP"
+            },
+            {
+              "id": "1",
+              "text": "Assigning a digit name afterward"
+            },
+            {
+              "id": "2",
+              "text": "The progress streak"
+            }
+          ],
+          "concept": "classifier",
+          "requires": [
+            "stdp"
+          ],
+          "misconceptions": {
+            "1": "Naming a neuron after learning does not create its incoming weights."
+          }
+        },
+        {
+          "id": "l23-q1",
+          "kind": "single",
+          "prompt": "A few neurons win almost every time. Which missing mechanism best explains that?",
+          "answer": "0",
+          "why": "Activity-dependent thresholds reduce repeated dominance.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Homeostatic thresholds"
+            },
+            {
+              "id": "1",
+              "text": "The final label assignment"
+            },
+            {
+              "id": "2",
+              "text": "A longer glossary"
+            }
+          ],
+          "concept": "classifier",
+          "requires": [
+            "homeostasis",
+            "wta"
+          ],
+          "misconceptions": {
+            "1": "Labels name responses; they do not balance excitability."
+          }
+        },
+        {
+          "id": "l23-q2",
+          "kind": "multi",
+          "prompt": "Which statements describe the learning setup?",
+          "answer": [
+            "0",
+            "1"
+          ],
+          "why": "Unsupervised weight learning is followed by label assignment for evaluation.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Labels are not used to guide STDP weight learning"
+            },
+            {
+              "id": "1",
+              "text": "Neuron labels are assigned after unsupervised learning"
+            },
+            {
+              "id": "2",
+              "text": "Labels drive every STDP update"
+            }
+          ],
+          "concept": "classifier",
+          "requires": [
+            "rate",
+            "stdp"
+          ],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l23-r0",
+          "kind": "single",
+          "prompt": "If you remove STDP but retain later neuron naming, do the weights learn digit templates by that naming step?",
+          "answer": "1",
+          "why": "Naming does not train receptive fields.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Yes"
+            },
+            {
+              "id": "1",
+              "text": "No"
+            }
+          ],
+          "concept": "classifier",
+          "requires": [
+            "stdp"
+          ],
+          "misconceptions": {}
+        },
+        {
+          "id": "l23-r1",
+          "kind": "single",
+          "prompt": "What suppresses neighboring neurons when one wins?",
+          "answer": "0",
+          "why": "Inhibitory interactions create competition.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Lateral inhibition"
+            },
+            {
+              "id": "1",
+              "text": "The assigned digit name"
+            }
+          ],
+          "concept": "classifier",
+          "requires": [
+            "wta"
+          ],
+          "misconceptions": {}
+        },
+        {
+          "id": "l23-r2",
+          "kind": "single",
+          "prompt": "Does calling the weight learning unsupervised mean labels are absent from every evaluation step?",
+          "answer": "1",
+          "why": "Labels are used after learning to assign neuron classes and evaluate responses.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Yes"
+            },
+            {
+              "id": "1",
+              "text": "No"
+            }
+          ],
+          "concept": "classifier",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Receptive field",
+          "meaning": "The input pattern to which a unit responds strongly."
+        },
+        {
+          "term": "Label assignment",
+          "meaning": "Naming learned units using their responses to labeled examples."
+        },
+        {
+          "term": "Unsupervised weight learning",
+          "meaning": "Changing weights without target labels guiding those updates."
+        }
+      ],
+      "goDeeper": [
+        {
+          "title": "Diehl & Cook (2015)",
+          "url": "https://doi.org/10.3389/fncom.2015.00099",
+          "note": "Original architecture, learning protocol, and reported evaluation."
+        }
+      ]
+    },
+    {
+      "id": "l24",
+      "number": 24,
+      "title": "A value shared across neurons",
+      "type": "lesson",
+      "concepts": [
+        "population"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "A single beaker need not carry the entire value. Several neurons prefer different values, with overlapping responses. Their collective pattern carries the estimate."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "Two neurons prefer 2 and 8. Their response weights are 3 and 1. Weighted-average decoding gives (3×2 + 1×8)/(3+1) = 3.5."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "\\hat x=\\frac{\\sum_i r_i\\mu_i}{\\sum_i r_i}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l24-q0",
+          "kind": "number",
+          "prompt": "Preferred values 0 and 10; response weights 1 and 3. What is the weighted-average estimate?",
+          "answer": 7.5,
+          "why": "(1×0 + 3×10) / 4 = 7.5.",
+          "concept": "population",
+          "requires": [
+            "rate"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l24-q1",
+          "kind": "single",
+          "prompt": "A tuning curve describes…",
+          "answer": "0",
+          "why": "It relates stimulus value to response strength.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Response as the stimulus changes"
+            },
+            {
+              "id": "1",
+              "text": "Only the neuron’s reset voltage"
+            }
+          ],
+          "concept": "population",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l24-r0",
+          "kind": "number",
+          "prompt": "Preferences 2 and 6 with equal weights 2 and 2. Estimate?",
+          "answer": 4,
+          "why": "(2×2 + 2×6) / 4 = 4.",
+          "concept": "population",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l24-r1",
+          "kind": "single",
+          "prompt": "If every response weight is zero, this weighted-average decoder…",
+          "answer": "0",
+          "why": "There is no supported estimate from a zero total response.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Needs a fallback; denominator is zero"
+            },
+            {
+              "id": "1",
+              "text": "Automatically returns zero"
+            }
+          ],
+          "concept": "population",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Tuning curve",
+          "meaning": "Response strength as a function of stimulus value."
+        },
+        {
+          "term": "Preferred stimulus",
+          "meaning": "The value producing the strongest response."
+        },
+        {
+          "term": "Population vector",
+          "meaning": "A response-weighted combination of preferred directions or values."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l25",
+      "number": 25,
+      "title": "Checkpoint · make the connections",
+      "type": "boss",
+      "concepts": [
+        "delta",
+        "alif",
+        "memory",
+        "izh",
+        "wta"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Keep the state variables separate: the delta reference remembers sent events; adaptation remembers previous spikes; recovery shapes future voltage dynamics."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "Before calculating, name what gets updated and what stays fixed. A reset of voltage is different from a jump of recovery or threshold."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l25-q0",
+          "kind": "number",
+          "prompt": "r = 50, θ = 1, reading = 48.7. New reference after one event?",
+          "answer": 49,
+          "why": "DOWN: subtract one threshold from the sent reference.",
+          "concept": "delta",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l25-q1",
+          "kind": "number",
+          "prompt": "Baseline θ₀ = 1, a = 0.5, ρ = 0.8. Threshold after two silent steps?",
+          "answer": 1.32,
+          "why": "Keep 80% of the extra twice, then add baseline.",
+          "concept": "alif",
+          "requires": [
+            "leak"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l25-q2",
+          "kind": "number",
+          "prompt": "ρ = 0.95. Approximate memory 1/(1−ρ), in steps?",
+          "answer": 20,
+          "why": "Lost fraction is 0.05; reciprocal is 20.",
+          "concept": "memory",
+          "requires": [
+            "leak"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l25-q3",
+          "kind": "multi",
+          "prompt": "At an Izhikevich spike, which updates occur?",
+          "answer": [
+            "0",
+            "1"
+          ],
+          "why": "Voltage resets; recovery receives an additive jump.",
+          "options": [
+            {
+              "id": "0",
+              "text": "v resets to c"
+            },
+            {
+              "id": "1",
+              "text": "u increases by d"
+            },
+            {
+              "id": "2",
+              "text": "u resets to c"
+            }
+          ],
+          "concept": "izh",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l25-r0",
+          "kind": "number",
+          "prompt": "r = 6, θ = 0.5, reading = 6.7. New reference after one event?",
+          "answer": 6.5,
+          "why": "Add θ, not the raw reading.",
+          "concept": "delta",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l25-r1",
+          "kind": "number",
+          "prompt": "θ₀ = 1, a = 0.8, ρ = 0.5. Threshold after one silent step?",
+          "answer": 1.4,
+          "why": "Extra becomes 0.4; add 1.",
+          "concept": "alif",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l25-r2",
+          "kind": "number",
+          "prompt": "ρ = 0.9. Approximate memory in steps?",
+          "answer": 10,
+          "why": "1 / 0.1 = 10.",
+          "concept": "memory",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l25-r3",
+          "kind": "single",
+          "prompt": "What directly pushes neighbors below threshold?",
+          "answer": "0",
+          "why": "Inhibitory connections change neighboring states.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Lateral inhibition"
+            },
+            {
+              "id": "1",
+              "text": "A neuron’s label"
+            }
+          ],
+          "concept": "wta",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Transfer",
+          "meaning": "Using a concept in a changed example or combined problem."
+        }
+      ],
+      "goDeeper": []
+    }
+  ]
+}

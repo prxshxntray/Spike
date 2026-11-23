@@ -1,0 +1,482 @@
+{
+  "id": "u2",
+  "title": "Coding & timing",
+  "levels": [
+    {
+      "id": "l10",
+      "number": 10,
+      "title": "A pause after the spike",
+      "type": "lesson",
+      "concepts": [
+        "refractory"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "After tipping, imagine the beaker’s inlet temporarily closed. During an absolute refractory interval it cannot fire again. Relative refractoriness instead makes firing harder."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "Under a convention where successive spikes must be at least 4 ms apart, the ceiling is 1 / 0.004 = 250 spikes/s. Additional charging time can lower the actual rate."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "f_{\\max}\\leq\\frac{1}{t_{\\mathrm{ref}}}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l10-q0",
+          "kind": "number",
+          "prompt": "Minimum spike separation is 5 ms. What is the rate ceiling in spikes/s?",
+          "answer": 200,
+          "why": "1 / 0.005 = 200.",
+          "concept": "refractory",
+          "requires": [
+            "time"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l10-q1",
+          "kind": "single",
+          "prompt": "During an absolute refractory interval, extra input…",
+          "answer": "1",
+          "why": "Absolute means firing is disallowed for that interval.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Always forces a spike"
+            },
+            {
+              "id": "1",
+              "text": "Cannot cause another spike"
+            }
+          ],
+          "concept": "refractory",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l10-r0",
+          "kind": "number",
+          "prompt": "Minimum separation 10 ms gives what ceiling in spikes/s?",
+          "answer": 100,
+          "why": "1 / 0.01 = 100.",
+          "concept": "refractory",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l10-r1",
+          "kind": "single",
+          "prompt": "Relative refractoriness means…",
+          "answer": "0",
+          "why": "The neuron is less excitable, not necessarily silent.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Firing is harder"
+            },
+            {
+              "id": "1",
+              "text": "Firing is absolutely impossible"
+            }
+          ],
+          "concept": "refractory",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Absolute refractory period",
+          "meaning": "An interval when another spike is disallowed."
+        },
+        {
+          "term": "Relative refractory period",
+          "meaning": "An interval of reduced excitability."
+        },
+        {
+          "term": "Maximum firing rate",
+          "meaning": "The largest rate allowed by the model and timing."
+        },
+        {
+          "term": "Saturation",
+          "meaning": "A limit beyond which more input no longer increases output."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l11",
+      "number": 11,
+      "title": "Count the tips",
+      "type": "lesson",
+      "concepts": [
+        "rate"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Rate coding reads how many times the beaker tips in a window. It discards exact spike timing when only the count is decoded."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "Spikes at steps 2, 5, 9 and at 1, 6, 10 both encode count 3 in a 10-step window."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "r=\\frac{N}{T\\Delta t}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l11-q0",
+          "kind": "single",
+          "prompt": "Two trains each have 5 spikes in the same window but different timing. A count-only decoder reads them as…",
+          "answer": "0",
+          "why": "Equal count and duration mean equal rate.",
+          "options": [
+            {
+              "id": "0",
+              "text": "The same rate"
+            },
+            {
+              "id": "1",
+              "text": "Different rates"
+            }
+          ],
+          "concept": "rate",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l11-q1",
+          "kind": "number",
+          "prompt": "6 spikes in 0.2 seconds is how many spikes/s?",
+          "answer": 30,
+          "why": "6 / 0.2 = 30.",
+          "concept": "rate",
+          "requires": [
+            "time"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "retries": [
+        {
+          "id": "l11-r0",
+          "kind": "number",
+          "prompt": "4 spikes in 0.1 seconds is how many spikes/s?",
+          "answer": 40,
+          "why": "4 / 0.1 = 40.",
+          "concept": "rate",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l11-r1",
+          "kind": "single",
+          "prompt": "What does a pure count decoder discard?",
+          "answer": "0",
+          "why": "It keeps the count, not the temporal arrangement.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Exact event times"
+            },
+            {
+              "id": "1",
+              "text": "Total count"
+            }
+          ],
+          "concept": "rate",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Rate coding",
+          "meaning": "Representing a value by spike count per window."
+        },
+        {
+          "term": "Spike count",
+          "meaning": "The number of events in a window."
+        },
+        {
+          "term": "Spike train",
+          "meaning": "The time sequence of spike events."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l12",
+      "number": 12,
+      "title": "Earlier can mean stronger",
+      "type": "lesson",
+      "concepts": [
+        "ttfs"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Start the beakers together. With a suitable encoder, a stronger pour reaches the line earlier. The first tip time carries the value."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "In one latency encoder, input A first spikes at 3 ms and B at 8 ms. A represents the stronger input under this encoder’s earlier-is-stronger rule."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "t_{\\mathrm{first}}=\\min\\{t:s(t)=1\\}"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l12-q0",
+          "kind": "single",
+          "prompt": "Under an earlier-is-stronger encoder, 4 ms versus 9 ms indicates…",
+          "answer": "0",
+          "why": "The mapping assigns strength to earlier first spikes.",
+          "options": [
+            {
+              "id": "0",
+              "text": "The 4 ms input is stronger"
+            },
+            {
+              "id": "1",
+              "text": "The 9 ms input is stronger"
+            }
+          ],
+          "concept": "ttfs",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l12-q1",
+          "kind": "single",
+          "prompt": "Two equal first-spike times but different later counts: a TTFS decoder reads…",
+          "answer": "0",
+          "why": "It uses the first event latency only.",
+          "options": [
+            {
+              "id": "0",
+              "text": "The same encoded value"
+            },
+            {
+              "id": "1",
+              "text": "Different values from later counts"
+            }
+          ],
+          "concept": "ttfs",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l12-r0",
+          "kind": "single",
+          "prompt": "Small random shifts of spike times are called…",
+          "answer": "0",
+          "why": "Jitter is timing variability.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Jitter"
+            },
+            {
+              "id": "1",
+              "text": "Fan-out"
+            }
+          ],
+          "concept": "ttfs",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l12-r1",
+          "kind": "single",
+          "prompt": "Does every possible SNN use earlier to mean stronger?",
+          "answer": "1",
+          "why": "That depends on the encoder, not on spikes in general.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Yes"
+            },
+            {
+              "id": "1",
+              "text": "No"
+            }
+          ],
+          "concept": "ttfs",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Temporal coding",
+          "meaning": "Representing information in event timing."
+        },
+        {
+          "term": "Time-to-first-spike",
+          "meaning": "A code using the latency of the first event."
+        },
+        {
+          "term": "Latency coding",
+          "meaning": "A code based on delay relative to a reference time."
+        },
+        {
+          "term": "Jitter",
+          "meaning": "Small variability in timing."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l13",
+      "number": 13,
+      "title": "Checkpoint · the spiking neuron",
+      "type": "boss",
+      "concepts": [
+        "leak",
+        "delta",
+        "synops",
+        "surrogate",
+        "rate",
+        "ttfs"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "You now have a beaker, a clock, a sticky note, and a learning proxy. Pick the right model before doing arithmetic."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "For a membrane recurrence, multiply the previous state by β. For delta encoding, compare with the last sent reference. These are different states."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l13-q0",
+          "kind": "number",
+          "prompt": "β = 0.5, v = 0.8, I = 0.3, θ = 1. What is the pre-reset level after one step?",
+          "answer": 0.7,
+          "why": "0.5 × 0.8 + 0.3 = 0.7: no spike.",
+          "concept": "leak",
+          "requires": [
+            "threshold"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l13-q1",
+          "kind": "number",
+          "prompt": "r = 40, θ = 2, reading = 37.5. After one event, what is r?",
+          "answer": 38,
+          "why": "DOWN: 40 − 2 = 38.",
+          "concept": "delta",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l13-q2",
+          "kind": "number",
+          "prompt": "3 spikes each reach 128 targets. How many SynOps?",
+          "answer": 384,
+          "why": "3 × 128 = 384.",
+          "concept": "synops",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "retries": [
+        {
+          "id": "l13-r0",
+          "kind": "number",
+          "prompt": "β = 0.8, v = 0.5, I = 0.2. What is the pre-reset level?",
+          "answer": 0.6,
+          "why": "0.8 × 0.5 + 0.2 = 0.6.",
+          "concept": "leak",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l13-r1",
+          "kind": "number",
+          "prompt": "r = 15, θ = 1, reading = 16.4. New r after one event?",
+          "answer": 16,
+          "why": "UP moves the note by 1.",
+          "concept": "delta",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l13-r2",
+          "kind": "single",
+          "prompt": "A surrogate gradient replaces…",
+          "answer": "0",
+          "why": "It approximates a derivative during learning.",
+          "options": [
+            {
+              "id": "0",
+              "text": "The backward slope"
+            },
+            {
+              "id": "1",
+              "text": "The spike times with rates"
+            }
+          ],
+          "concept": "surrogate",
+          "requires": [
+            "gradient"
+          ],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Retrieval",
+          "meaning": "Reconstructing an idea from memory rather than recognizing fresh text."
+        }
+      ],
+      "goDeeper": []
+    }
+  ]
+}

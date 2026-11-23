@@ -1,0 +1,10 @@
+import { z } from 'zod';
+const option = z.object({id:z.string(),text:z.string()});
+export const questionSchema = z.object({id:z.string(),kind:z.enum(['single','multi','number']),prompt:z.string(),options:z.array(option).optional(),answer:z.union([z.string(),z.array(z.string()),z.number()]),tolerance:z.number().nonnegative().optional(),why:z.string(),misconceptions:z.record(z.string(),z.string()).default({}),concept:z.string(),requires:z.array(z.string()).default([])}).superRefine((q,ctx)=>{if(q.kind==='number' && typeof q.answer!=='number')ctx.addIssue({code:'custom',message:'Numeric answer required'});if(q.kind!=='number'){const ids=q.options?.map(o=>o.id)||[];const answers=Array.isArray(q.answer)?q.answer:[q.answer];if(!ids.length||answers.some(a=>!ids.includes(String(a))))ctx.addIssue({code:'custom',message:'Answer must name an option'});}});
+export const cardSchema = z.object({kind:z.enum(['text','analogy','numbers','equation','tracker','sim','compare']),title:z.string(),body:z.string().optional(),steps:z.array(z.string()).optional(),columns:z.array(z.string()).optional(),rows:z.array(z.array(z.string())).optional(),simId:z.enum(['beaker','izhikevich']).optional(),params:z.record(z.string(),z.number()).optional()});
+export const levelSchema = z.object({id:z.string(),number:z.number(),title:z.string(),type:z.enum(['lesson','boss','coming-soon']).default('lesson'),concepts:z.array(z.string()),cards:z.array(cardSchema),quiz:z.array(questionSchema),retries:z.array(questionSchema),newTerms:z.array(z.object({term:z.string(),meaning:z.string()})),goDeeper:z.array(z.object({title:z.string(),url:z.url(),note:z.string()})).default([])});
+export const topicSchema = z.object({id:z.string(),title:z.string(),emoji:z.string(),accentColor:z.string(),concepts:z.array(z.object({id:z.string(),label:z.string(),prerequisites:z.array(z.string())})),units:z.array(z.object({id:z.string(),title:z.string(),levels:z.array(levelSchema)}))});
+export type Question=z.infer<typeof questionSchema>;
+export type Card=z.infer<typeof cardSchema>;
+export type Level=z.infer<typeof levelSchema>;
+export type Topic=z.infer<typeof topicSchema>;

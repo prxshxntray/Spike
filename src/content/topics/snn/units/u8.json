@@ -1,0 +1,42 @@
+{
+  "id": "u8",
+  "title": "Recurrent computation",
+  "levels": [
+    {
+      "id": "l31",
+      "number": 31,
+      "title": "Recurrent SNNs",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    },
+    {
+      "id": "l32",
+      "number": 32,
+      "title": "Reservoirs and liquid state machines",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    },
+    {
+      "id": "l33",
+      "number": 33,
+      "title": "E-prop",
+      "type": "coming-soon",
+      "concepts": [],
+      "cards": [],
+      "quiz": [],
+      "retries": [],
+      "newTerms": [],
+      "goDeeper": []
+    }
+  ]
+}

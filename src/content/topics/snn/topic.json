@@ -1,0 +1,195 @@
+{
+  "id": "snn",
+  "title": "Spiking neural networks",
+  "emoji": "ϟ",
+  "accentColor": "#b5ed85",
+  "concepts": [
+    {
+      "id": "leak",
+      "label": "A little leaks away",
+      "prerequisites": []
+    },
+    {
+      "id": "equilibrium",
+      "label": "Where the water settles",
+      "prerequisites": [
+        "leak"
+      ]
+    },
+    {
+      "id": "threshold",
+      "label": "The tipping line",
+      "prerequisites": [
+        "equilibrium"
+      ]
+    },
+    {
+      "id": "delta",
+      "label": "The sticky-note reference",
+      "prerequisites": []
+    },
+    {
+      "id": "synops",
+      "label": "One spike, many pours",
+      "prerequisites": [
+        "threshold"
+      ]
+    },
+    {
+      "id": "energy",
+      "label": "When sparsity pays",
+      "prerequisites": [
+        "synops"
+      ]
+    },
+    {
+      "id": "time",
+      "label": "A window in time",
+      "prerequisites": []
+    },
+    {
+      "id": "gradient",
+      "label": "Why spikes resist gradients",
+      "prerequisites": [
+        "threshold"
+      ]
+    },
+    {
+      "id": "surrogate",
+      "label": "A useful pretend slope",
+      "prerequisites": [
+        "gradient"
+      ]
+    },
+    {
+      "id": "refractory",
+      "label": "A pause after the spike",
+      "prerequisites": [
+        "threshold",
+        "time"
+      ]
+    },
+    {
+      "id": "rate",
+      "label": "Count the tips",
+      "prerequisites": [
+        "time",
+        "threshold"
+      ]
+    },
+    {
+      "id": "ttfs",
+      "label": "Earlier can mean stronger",
+      "prerequisites": [
+        "time",
+        "threshold"
+      ]
+    },
+    {
+      "id": "stdp",
+      "label": "Timing changes the connection",
+      "prerequisites": [
+        "threshold"
+      ]
+    },
+    {
+      "id": "trace",
+      "label": "A fading timing trace",
+      "prerequisites": [
+        "stdp",
+        "leak"
+      ]
+    },
+    {
+      "id": "rstdp",
+      "label": "A tag waits for a third signal",
+      "prerequisites": [
+        "stdp",
+        "trace"
+      ]
+    },
+    {
+      "id": "wta",
+      "label": "Let one beaker win",
+      "prerequisites": [
+        "threshold",
+        "stdp"
+      ]
+    },
+    {
+      "id": "homeostasis",
+      "label": "Give the quiet ones a chance",
+      "prerequisites": [
+        "wta"
+      ]
+    },
+    {
+      "id": "alif",
+      "label": "A tipping line that remembers",
+      "prerequisites": [
+        "leak",
+        "threshold"
+      ]
+    },
+    {
+      "id": "memory",
+      "label": "Kept is not lost",
+      "prerequisites": [
+        "alif",
+        "leak"
+      ]
+    },
+    {
+      "id": "izh",
+      "label": "A drain with its own memory",
+      "prerequisites": [
+        "leak",
+        "memory"
+      ]
+    },
+    {
+      "id": "classifier",
+      "label": "A network that organizes itself",
+      "prerequisites": [
+        "stdp",
+        "wta",
+        "homeostasis",
+        "rate"
+      ]
+    },
+    {
+      "id": "population",
+      "label": "A value shared across neurons",
+      "prerequisites": [
+        "rate"
+      ]
+    },
+    {
+      "id": "hh",
+      "label": "Channels are changing gates",
+      "prerequisites": [
+        "izh"
+      ]
+    },
+    {
+      "id": "synapse",
+      "label": "A synapse has a shape in time",
+      "prerequisites": [
+        "hh",
+        "trace"
+      ]
+    }
+  ],
+  "units": [
+    "u1",
+    "u2",
+    "u3",
+    "u4",
+    "u5",
+    "u6",
+    "u7",
+    "u8",
+    "u9",
+    "u10"
+  ]
+}

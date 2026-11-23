@@ -1,0 +1,533 @@
+{
+  "id": "u4",
+  "title": "Richer neurons",
+  "levels": [
+    {
+      "id": "l20",
+      "number": 20,
+      "title": "A tipping line that remembers",
+      "type": "lesson",
+      "concepts": [
+        "alif"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "Give the tipping line a temporary extra height a. Each spike adds a jump; between spikes that extra keeps a fraction ρ. The baseline line stays fixed."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "θ₀ = 1, jump = 0.5, ρ = 0.8. Immediately after a spike θ = 1.5. Silent steps give 1.4, 1.32, 1.256."
+        },
+        {
+          "kind": "tracker",
+          "title": "One step at a time",
+          "columns": [
+            "Silent steps",
+            "Extra a",
+            "Threshold",
+            "Spike?",
+            "Note"
+          ],
+          "rows": [
+            [
+              "0",
+              "0.5",
+              "1.5",
+              "Just fired",
+              "Jump added"
+            ],
+            [
+              "1",
+              "0.4",
+              "1.4",
+              "No",
+              "Keep 80% of extra"
+            ],
+            [
+              "2",
+              "0.32",
+              "1.32",
+              "No",
+              "Baseline is unchanged"
+            ],
+            [
+              "3",
+              "0.256",
+              "1.256",
+              "No",
+              "Extra keeps fading"
+            ]
+          ]
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "\\theta_t=\\theta_0+a_t",
+            "a_{t+1}=\\rho a_t+J s_t"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l20-q0",
+          "kind": "number",
+          "prompt": "θ₀ = 1, a = 0.5, ρ = 0.8. After TWO silent decays, what is θ?",
+          "answer": 1.32,
+          "why": "Extra: 0.5 → 0.4 → 0.32. Add baseline 1.",
+          "concept": "alif",
+          "requires": [
+            "leak"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l20-q1",
+          "kind": "single",
+          "prompt": "Under steady strong drive, adaptation often makes firing…",
+          "answer": "0",
+          "why": "Past spikes raise the threshold and reduce excitability.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Slow after an initial fast response"
+            },
+            {
+              "id": "1",
+              "text": "Speed up forever"
+            }
+          ],
+          "concept": "alif",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l20-r0",
+          "kind": "number",
+          "prompt": "θ₀ = 1, a = 0.6, ρ = 0.5. After one silent decay, what is θ?",
+          "answer": 1.3,
+          "why": "a becomes 0.3; baseline plus extra is 1.3.",
+          "concept": "alif",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l20-r1",
+          "kind": "number",
+          "prompt": "a = 0.2, ρ = 0.5, J = 0.4, s = 1. What is next a?",
+          "answer": 0.5,
+          "why": "0.5 × 0.2 + 0.4 = 0.5.",
+          "concept": "alif",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "ALIF",
+          "meaning": "Adaptive leaky integrate-and-fire neuron."
+        },
+        {
+          "term": "Adaptation variable a",
+          "meaning": "A state recording the recent history of activity."
+        },
+        {
+          "term": "Adaptation strength",
+          "meaning": "The size of an adaptation increment per spike."
+        },
+        {
+          "term": "Adaptation decay ρ",
+          "meaning": "The retained fraction of adaptation per step."
+        },
+        {
+          "term": "Adaptation time constant τₐ",
+          "meaning": "The physical decay timescale associated with ρ."
+        },
+        {
+          "term": "Spike-frequency adaptation",
+          "meaning": "A reduced firing rate after sustained stimulation."
+        }
+      ],
+      "goDeeper": []
+    },
+    {
+      "id": "l21",
+      "number": 21,
+      "title": "Kept is not lost",
+      "type": "lesson",
+      "concepts": [
+        "memory"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "The extra threshold is a slow memory of previous tips. When ρ is near 1, very little disappears each step. That tiny lost fraction sets a long timescale."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "ρ = 0.9 keeps 90%, loses 10%. The near-one approximation gives 1 / 0.1 = 10 steps. For ρ = 0.95 it gives 20. At ρ = 0.5 it gives 2, but the exact e-fold time is about 1.44 steps."
+        },
+        {
+          "kind": "tracker",
+          "title": "One step at a time",
+          "columns": [
+            "ρ",
+            "Kept",
+            "Lost",
+            "Approx. steps",
+            "Exact e-fold steps"
+          ],
+          "rows": [
+            [
+              "0.5",
+              "50%",
+              "50%",
+              "2",
+              "1.443"
+            ],
+            [
+              "0.9",
+              "90%",
+              "10%",
+              "10",
+              "9.491"
+            ],
+            [
+              "0.95",
+              "95%",
+              "5%",
+              "20",
+              "19.496"
+            ]
+          ]
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "\\tau_{\\mathrm{steps}}=-\\frac{1}{\\ln\\rho}",
+            "\\tau_{\\mathrm{steps}}\\approx\\frac{1}{1-\\rho}\\quad(\\rho\\approx1)"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l21-q0",
+          "kind": "number",
+          "prompt": "ρ = 0.95. Using 1/(1−ρ), what is the approximate memory in steps?",
+          "answer": 20,
+          "why": "Lost fraction is 0.05; 1 / 0.05 = 20.",
+          "concept": "memory",
+          "requires": [
+            "leak"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l21-q1",
+          "kind": "single",
+          "prompt": "ρ = 0.9 means…",
+          "answer": "1",
+          "why": "The multiplier is the kept fraction.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Lose 90% each step"
+            },
+            {
+              "id": "1",
+              "text": "Keep 90% each step"
+            }
+          ],
+          "concept": "memory",
+          "requires": [],
+          "misconceptions": {
+            "0": "Start with 1: multiply by 0.9 to get 0.9, so only 0.1 was lost."
+          }
+        },
+        {
+          "id": "l21-q2",
+          "kind": "single",
+          "prompt": "Which remembers longer?",
+          "answer": "1",
+          "why": "0.98 loses just 2% per step, so decay is slower.",
+          "options": [
+            {
+              "id": "0",
+              "text": "ρ = 0.8"
+            },
+            {
+              "id": "1",
+              "text": "ρ = 0.98"
+            }
+          ],
+          "concept": "memory",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "retries": [
+        {
+          "id": "l21-r0",
+          "kind": "number",
+          "prompt": "ρ = 0.8. Approximate memory 1/(1−ρ), in steps?",
+          "answer": 5,
+          "why": "Lose 0.2 per step; reciprocal is 5.",
+          "concept": "memory",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l21-r1",
+          "kind": "single",
+          "prompt": "ρ = 0.95. The lost fraction is…",
+          "answer": "1",
+          "why": "1 − 0.95 = 0.05.",
+          "options": [
+            {
+              "id": "0",
+              "text": "0.95"
+            },
+            {
+              "id": "1",
+              "text": "0.05"
+            }
+          ],
+          "concept": "memory",
+          "requires": [],
+          "misconceptions": {
+            "0": "ρ is kept. Loss is 1 − ρ."
+          }
+        },
+        {
+          "id": "l21-r2",
+          "kind": "number",
+          "prompt": "ρ = 0.5 and initial a = 0.8. After two silent steps, what is a?",
+          "answer": 0.2,
+          "why": "0.8 → 0.4 → 0.2.",
+          "concept": "memory",
+          "requires": [
+            "leak"
+          ],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Memory timescale",
+          "meaning": "How long a state continues to influence future dynamics."
+        },
+        {
+          "term": "Fast vs slow variable",
+          "meaning": "States that relax on different timescales."
+        },
+        {
+          "term": "Multiple timescales",
+          "meaning": "Several coexisting rates of state evolution."
+        },
+        {
+          "term": "LSNN",
+          "meaning": "Long short-term memory spiking neural network using adaptive neurons."
+        }
+      ],
+      "goDeeper": [
+        {
+          "title": "Bellec et al. · LSNNs (2018)",
+          "url": "https://arxiv.org/abs/1803.09574",
+          "note": "Adaptive neurons as a slow memory mechanism."
+        }
+      ]
+    },
+    {
+      "id": "l22",
+      "number": 22,
+      "title": "A drain with its own memory",
+      "type": "lesson",
+      "concepts": [
+        "izh"
+      ],
+      "cards": [
+        {
+          "kind": "analogy",
+          "title": "Start with the beaker",
+          "body": "The beaker has fast water level v and a slower recovery state u, like a drain that widens after a tip. This is an analogy: u is a signed recovery current, not literally a hole."
+        },
+        {
+          "kind": "numbers",
+          "title": "Make it concrete",
+          "body": "At a spike, reset v to c and add d to u. Regular spiking uses a = 0.02, b = 0.2, c = −65, d = 8. Chattering uses the same a,b with c = −50, d = 2."
+        },
+        {
+          "kind": "sim",
+          "title": "Try it yourself",
+          "simId": "izhikevich",
+          "body": "Change one thing. Predict what will happen, then test it."
+        },
+        {
+          "kind": "equation",
+          "title": "Now give it symbols",
+          "body": "The symbols describe the example you just saw.",
+          "steps": [
+            "\\dot v=0.04v^2+5v+140-u+I",
+            "\\dot u=a(bv-u)",
+            "v\\ge30:\\quad v\\leftarrow c,\\;u\\leftarrow u+d"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l22-q0",
+          "kind": "single",
+          "prompt": "Which variable receives the additive jump d after a spike?",
+          "answer": "1",
+          "why": "v is reset to c; recovery u increases by d.",
+          "options": [
+            {
+              "id": "0",
+              "text": "v"
+            },
+            {
+              "id": "1",
+              "text": "u"
+            }
+          ],
+          "concept": "izh",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l22-q1",
+          "kind": "single",
+          "prompt": "Which change is the chattering preset here?",
+          "answer": "0",
+          "why": "The higher reset and smaller recovery jump support bursts under suitable drive.",
+          "options": [
+            {
+              "id": "0",
+              "text": "c = −50, d = 2"
+            },
+            {
+              "id": "1",
+              "text": "c = −65, d = 8"
+            }
+          ],
+          "concept": "izh",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l22-q2",
+          "kind": "number",
+          "prompt": "u = −10 before a spike; d = 8. What is u immediately afterward?",
+          "answer": -2,
+          "why": "−10 + 8 = −2.",
+          "concept": "izh",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        }
+      ],
+      "retries": [
+        {
+          "id": "l22-r0",
+          "kind": "number",
+          "prompt": "u = −9, d = 2. New u after a spike?",
+          "answer": -7,
+          "why": "−9 + 2 = −7.",
+          "concept": "izh",
+          "requires": [],
+          "misconceptions": {},
+          "tolerance": 0.01
+        },
+        {
+          "id": "l22-r1",
+          "kind": "single",
+          "prompt": "The parameter a mainly controls…",
+          "answer": "0",
+          "why": "a scales du/dt.",
+          "options": [
+            {
+              "id": "0",
+              "text": "Recovery dynamics speed"
+            },
+            {
+              "id": "1",
+              "text": "The reset voltage itself"
+            }
+          ],
+          "concept": "izh",
+          "requires": [],
+          "misconceptions": {}
+        },
+        {
+          "id": "l22-r2",
+          "kind": "single",
+          "prompt": "What does b control?",
+          "answer": "0",
+          "why": "The recovery target contains b × v.",
+          "options": [
+            {
+              "id": "0",
+              "text": "How v couples into recovery"
+            },
+            {
+              "id": "1",
+              "text": "The spike count window"
+            }
+          ],
+          "concept": "izh",
+          "requires": [],
+          "misconceptions": {}
+        }
+      ],
+      "newTerms": [
+        {
+          "term": "Izhikevich model",
+          "meaning": "A two-state neuron model with quadratic voltage dynamics and reset."
+        },
+        {
+          "term": "Recovery variable u",
+          "meaning": "A slow state opposing or shaping voltage dynamics."
+        },
+        {
+          "term": "Regular spiking",
+          "meaning": "A train of separated spikes, often with adaptation."
+        },
+        {
+          "term": "Chattering",
+          "meaning": "Repeated short bursts under appropriate drive."
+        },
+        {
+          "term": "Bursting",
+          "meaning": "Groups of closely spaced spikes separated by quieter intervals."
+        },
+        {
+          "term": "Bifurcation",
+          "meaning": "A qualitative change in dynamics as a parameter changes."
+        }
+      ],
+      "goDeeper": [
+        {
+          "title": "Izhikevich · Simple model (2003)",
+          "url": "https://www.izhikevich.org/publications/spikes.htm",
+          "note": "Original model, equations, and firing patterns."
+        }
+      ]
+    }
+  ]
+}

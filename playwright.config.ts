@@ -1,0 +1,2 @@
+import {defineConfig,devices} from '@playwright/test';
+export default defineConfig({testDir:'tests',testMatch:'**/*.spec.ts',fullyParallel:false,use:{baseURL:'http://127.0.0.1:4175',...devices['iPhone 14'],browserName:'chromium',channel:process.env.PLAYWRIGHT_CHANNEL as 'chrome'|undefined},webServer:{command:'npm run preview -- --port 4175',url:'http://127.0.0.1:4175',reuseExistingServer:!process.env.CI},reporter:'list'});
