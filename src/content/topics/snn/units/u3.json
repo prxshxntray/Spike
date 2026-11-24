@@ -13,17 +13,34 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "If one beaker’s event helps another tip soon after, strengthen their connection in a conventional pair-based STDP rule. Reverse their order and weaken it."
+          "title": "Timing changes the connection",
+          "body": "If one beaker’s event helps another tip soon after, strengthen their connection in a conventional pair-based STDP rule. Reverse their order and weaken it.",
+          "diagram": {
+            "kind": "spikes",
+            "title": "Read left to right: who fires first?",
+            "caption": "Pre at 3 ms, post at 7 ms: Δt = +4 ms. This conventional pair rule strengthens the connection.",
+            "items": [
+              {
+                "label": "Pre",
+                "value": 0,
+                "note": "3"
+              },
+              {
+                "label": "Post",
+                "value": 0,
+                "note": "7"
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Pre first or post first?",
           "body": "Pre at 10 ms, post at 15 ms gives Δt = +5 ms: potentiation. Post at 10 ms, pre at 15 ms gives Δt = −5 ms: depression."
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "\\Delta t=t_{\\mathrm{post}}-t_{\\mathrm{pre}}",
@@ -32,7 +49,7 @@
         },
         {
           "kind": "text",
-          "title": "Keep this distinction",
+          "title": "Which STDP rule are we using?",
           "body": "This is the conventional pair-based timing rule. Biological and model-specific STDP rules can have different windows and dependencies."
         }
       ],
@@ -142,17 +159,39 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "A recent tip leaves a fading mark. When the other neuron fires, the mark’s remaining strength says how recent the first event was."
+          "title": "A fading timing trace",
+          "body": "A recent tip leaves a fading mark. When the other neuron fires, the mark’s remaining strength says how recent the first event was.",
+          "diagram": {
+            "kind": "bars",
+            "title": "A trace fades while it waits",
+            "caption": "An exponential trace starts at 1 with τ = 10 ms.",
+            "items": [
+              {
+                "label": "0 ms",
+                "value": 1,
+                "note": "1.000"
+              },
+              {
+                "label": "10 ms",
+                "value": 0.368,
+                "note": "0.368"
+              },
+              {
+                "label": "20 ms",
+                "value": 0.135,
+                "note": "0.135"
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "A longer gap leaves a weaker trace",
           "body": "For τ = 10 ms, a gap of 10 ms leaves e⁻¹ ≈ 0.368 of the peak effect; 20 ms leaves about 0.135."
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "x(t)=e^{-t/\\tau}",
@@ -261,17 +300,39 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "Timing leaves an eligibility tag on the connection. A later modulatory signal can turn that tag into a weight change before it fades."
+          "title": "A tag waits for a third signal",
+          "body": "Timing leaves an eligibility tag on the connection. A later modulatory signal can turn that tag into a weight change before it fades.",
+          "diagram": {
+            "kind": "flow",
+            "title": "A tag bridges the delay",
+            "caption": "A later reward acts on whatever eligibility remains.",
+            "items": [
+              {
+                "label": "Spike timing",
+                "value": 0,
+                "note": "Leaves an eligibility tag e."
+              },
+              {
+                "label": "Wait",
+                "value": 0,
+                "note": "The tag fades with time."
+              },
+              {
+                "label": "Reward arrives",
+                "value": 0,
+                "note": "Weight change = η × R × e."
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Multiply the tag by the reward",
           "body": "Eligibility e = 0.4, reward signal R = 0.5, learning rate η = 0.1: Δw = 0.02. With R = 0, the pure three-factor update is zero."
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "\\Delta w=\\eta R e"
@@ -377,17 +438,34 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "The first beaker to tip pushes its neighbors’ water down. Competition reduces simultaneous winners, allowing different neurons to specialize."
+          "title": "Let one beaker win",
+          "body": "The first beaker to tip pushes its neighbors’ water down. Competition reduces simultaneous winners, allowing different neurons to specialize.",
+          "diagram": {
+            "kind": "bars",
+            "title": "Inhibition pushes a rival down",
+            "caption": "A spikes and sends −0.4 to B. These bars show B’s membrane state.",
+            "items": [
+              {
+                "label": "B before",
+                "value": 0.9,
+                "note": "0.9"
+              },
+              {
+                "label": "B after",
+                "value": 0.5,
+                "note": "0.5"
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "One winner suppresses its neighbor",
           "body": "A and B are approaching threshold. A spikes first and sends −0.4 to B. If B was at 0.9, its state falls to 0.5."
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "v_B\\leftarrow v_B-w_{\\mathrm{inh}}"
@@ -495,17 +573,36 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "A frequent winner gets a higher tipping line. A quiet neuron’s extra threshold can relax downward. This helps distribute activity."
+          "title": "Give the quiet ones a chance",
+          "body": "A frequent winner gets a higher tipping line. A quiet neuron’s extra threshold can relax downward. This helps distribute activity.",
+          "diagram": {
+            "kind": "beakers",
+            "title": "The winner gets a higher line",
+            "caption": "After a spike, the threshold rises from 1 to 1.2. The same water level is now farther from firing.",
+            "items": [
+              {
+                "label": "Before",
+                "value": 0.8,
+                "note": "θ = 1",
+                "threshold": 1
+              },
+              {
+                "label": "After",
+                "value": 0.8,
+                "note": "θ = 1.2",
+                "threshold": 1.2
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Raise the frequent winner’s threshold",
           "body": "A winner at θ = 1 gains 0.2: θ becomes 1.2. Under the same input, it is now harder to win the next competition."
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "\\theta\\leftarrow\\theta+\\delta\\quad\\text{after a spike}"
@@ -628,12 +725,34 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "Separate the jobs: timing creates a synaptic change or tag; inhibition creates competition; homeostasis balances excitability."
+          "title": "Checkpoint · learning locally",
+          "body": "Separate the jobs: timing creates a synaptic change or tag; inhibition creates competition; homeostasis balances excitability.",
+          "diagram": {
+            "kind": "flow",
+            "title": "Each mechanism has a different job",
+            "caption": "These mechanisms work together; one does not replace the others.",
+            "items": [
+              {
+                "label": "STDP",
+                "value": 0,
+                "note": "Changes connection weights."
+              },
+              {
+                "label": "Inhibition",
+                "value": 0,
+                "note": "Suppresses competing neurons."
+              },
+              {
+                "label": "Homeostasis",
+                "value": 0,
+                "note": "Adjusts how easily neurons fire."
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Timing, competition, and balance",
           "body": "A reward signal does not replace the timing trace. A higher threshold does not replace inhibitory connections."
         }
       ],

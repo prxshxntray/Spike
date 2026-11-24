@@ -13,17 +13,39 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "Give the tipping line a temporary extra height a. Each spike adds a jump; between spikes that extra keeps a fraction ρ. The baseline line stays fixed."
+          "title": "A tipping line that remembers",
+          "body": "Give the tipping line a temporary extra height a. Each spike adds a jump; between spikes that extra keeps a fraction ρ. The baseline line stays fixed.",
+          "diagram": {
+            "kind": "bars",
+            "title": "The baseline stays. The extra fades.",
+            "caption": "Baseline threshold = 1. Bars show only the extra a, keeping 80% per silent step.",
+            "items": [
+              {
+                "label": "After spike",
+                "value": 0.5,
+                "note": "+0.5"
+              },
+              {
+                "label": "1 step",
+                "value": 0.4,
+                "note": "+0.4"
+              },
+              {
+                "label": "2 steps",
+                "value": 0.32,
+                "note": "+0.32"
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "The extra threshold fades",
           "body": "θ₀ = 1, jump = 0.5, ρ = 0.8. Immediately after a spike θ = 1.5. Silent steps give 1.4, 1.32, 1.256."
         },
         {
           "kind": "tracker",
-          "title": "One step at a time",
+          "title": "Follow the changes",
           "columns": [
             "Silent steps",
             "Extra a",
@@ -64,7 +86,7 @@
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "\\theta_t=\\theta_0+a_t",
@@ -170,17 +192,39 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "The extra threshold is a slow memory of previous tips. When ρ is near 1, very little disappears each step. That tiny lost fraction sets a long timescale."
+          "title": "Kept is not lost",
+          "body": "The extra threshold is a slow memory of previous tips. When ρ is near 1, very little disappears each step. That tiny lost fraction sets a long timescale.",
+          "diagram": {
+            "kind": "bars",
+            "title": "A small loss means a longer memory",
+            "caption": "Approximate memory, in steps: 1/(1−ρ). This approximation works best near ρ = 1.",
+            "items": [
+              {
+                "label": "ρ = 0.9",
+                "value": 10,
+                "note": "10 steps"
+              },
+              {
+                "label": "ρ = 0.95",
+                "value": 20,
+                "note": "20 steps"
+              },
+              {
+                "label": "ρ = 0.98",
+                "value": 50,
+                "note": "50 steps"
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Keep 95%, lose 5%",
           "body": "ρ = 0.9 keeps 90%, loses 10%. The near-one approximation gives 1 / 0.1 = 10 steps. For ρ = 0.95 it gives 20. At ρ = 0.5 it gives 2, but the exact e-fold time is about 1.44 steps."
         },
         {
           "kind": "tracker",
-          "title": "One step at a time",
+          "title": "Follow the changes",
           "columns": [
             "ρ",
             "Kept",
@@ -214,7 +258,7 @@
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "\\tau_{\\mathrm{steps}}=-\\frac{1}{\\ln\\rho}",
@@ -364,12 +408,34 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "The beaker has fast water level v and a slower recovery state u, like a drain that widens after a tip. This is an analogy: u is a signed recovery current, not literally a hole."
+          "title": "A drain with its own memory",
+          "body": "The beaker has fast water level v and a slower recovery state u, like a drain that widens after a tip. This is an analogy: u is a signed recovery current, not literally a hole.",
+          "diagram": {
+            "kind": "flow",
+            "title": "Two states change at a spike",
+            "caption": "Voltage and recovery follow different update rules.",
+            "items": [
+              {
+                "label": "Voltage v",
+                "value": 0,
+                "note": "Reset to c."
+              },
+              {
+                "label": "Recovery u",
+                "value": 0,
+                "note": "Add d to the existing value."
+              },
+              {
+                "label": "Between spikes",
+                "value": 0,
+                "note": "Both states continue evolving."
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Reset voltage, then increase recovery",
           "body": "At a spike, reset v to c and add d to u. Regular spiking uses a = 0.02, b = 0.2, c = −65, d = 8. Chattering uses the same a,b with c = −50, d = 2."
         },
         {
@@ -380,7 +446,7 @@
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "\\dot v=0.04v^2+5v+140-u+I",

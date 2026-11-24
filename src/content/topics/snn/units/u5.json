@@ -13,17 +13,44 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "Imagine a row of competing beakers. Inputs arrive as spike trains; one winner inhibits neighbors. Its incoming weights change through timing-based learning."
+          "title": "How neurons learn different patterns",
+          "body": "Each beaker receives input through different taps. A tip holds its rivals back. Over time, the taps change, so different beakers respond to different patterns.",
+          "diagram": {
+            "kind": "network",
+            "title": "Inside the learning network",
+            "caption": "One winner’s feedback is shown. Simplified from Diehl & Cook (2015). Tap a mechanism to see its role.",
+            "items": [
+              {
+                "label": "Input spikes",
+                "value": 0,
+                "note": "Pixel intensity sets input spike rates."
+              },
+              {
+                "label": "Competition",
+                "value": 0,
+                "note": "Excitatory neurons recruit inhibition that suppresses rivals."
+              },
+              {
+                "label": "STDP",
+                "value": 0,
+                "note": "Spike timing changes the incoming weights; no digit labels guide these updates."
+              },
+              {
+                "label": "Thresholds",
+                "value": 0,
+                "note": "Frequent firing raises the threshold, reducing repeated wins."
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
-          "body": "The sequence in Diehl & Cook: rate-coded inputs → competitive excitatory neurons → STDP learns receptive fields → adaptive thresholds help share activity. Neuron labels are assigned afterward from labeled examples."
+          "title": "How the network learns a pattern",
+          "body": "A neuron responds strongly to a pattern. STDP changes its incoming connections, making that pattern easier to recognize next time. Inhibition limits rival responses; a rising threshold makes it harder for the same neuron to keep winning."
         },
         {
           "kind": "tracker",
-          "title": "One step at a time",
+          "title": "Follow the changes",
           "columns": [
             "Stage",
             "Input/state",
@@ -65,8 +92,8 @@
         },
         {
           "kind": "text",
-          "title": "Keep this distinction",
-          "body": "This named historical network is the one deliberate example from your brief. The paper reports roughly 95% MNIST accuracy with 6,400 excitatory neurons; that is a result for its particular experiment, not a guarantee for a generic SNN."
+          "title": "Learning weights comes before naming neurons",
+          "body": "First, STDP changes the connections without digit labels. Then labeled examples are used to name each neuron by the digit it responds to most. Naming a neuron does not train its connections."
         }
       ],
       "quiz": [
@@ -257,17 +284,34 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "A single beaker need not carry the entire value. Several neurons prefer different values, with overlapping responses. Their collective pattern carries the estimate."
+          "title": "A value shared across neurons",
+          "body": "A single beaker need not carry the entire value. Several neurons prefer different values, with overlapping responses. Their collective pattern carries the estimate.",
+          "diagram": {
+            "kind": "bars",
+            "title": "More response means more influence",
+            "caption": "Preferences are 2 and 8; response weights are 3 and 1. The weighted estimate is 3.5.",
+            "items": [
+              {
+                "label": "Prefers 2",
+                "value": 3,
+                "note": "3 votes"
+              },
+              {
+                "label": "Prefers 8",
+                "value": 1,
+                "note": "1 vote"
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Let several neurons vote",
           "body": "Two neurons prefer 2 and 8. Their response weights are 3 and 1. Weighted-average decoding gives (3×2 + 1×8)/(3+1) = 3.5."
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "\\hat x=\\frac{\\sum_i r_i\\mu_i}{\\sum_i r_i}"
@@ -373,12 +417,34 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "Keep the state variables separate: the delta reference remembers sent events; adaptation remembers previous spikes; recovery shapes future voltage dynamics."
+          "title": "Checkpoint · make the connections",
+          "body": "Keep the state variables separate: the delta reference remembers sent events; adaptation remembers previous spikes; recovery shapes future voltage dynamics.",
+          "diagram": {
+            "kind": "flow",
+            "title": "Keep the memories separate",
+            "caption": "Ask what a state remembers before updating it.",
+            "items": [
+              {
+                "label": "Reference r",
+                "value": 0,
+                "note": "Events already sent."
+              },
+              {
+                "label": "Adaptation a",
+                "value": 0,
+                "note": "Recent spiking activity."
+              },
+              {
+                "label": "Recovery u",
+                "value": 0,
+                "note": "A slower influence on voltage."
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Which state changes at a spike?",
           "body": "Before calculating, name what gets updated and what stays fixed. A reset of voltage is different from a jump of recovery or threshold."
         }
       ],

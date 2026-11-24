@@ -30,6 +30,10 @@ In Safari on your iPhone, open the deployed HTTPS link, tap Share → Add to Hom
 
 The production build generates a versioned service worker from every built asset, including fonts, lesson content and icons. A successful install caches the complete learning app. Updates wait for old app windows to close before activation. Progress is separate from the cache. The browser/OS can evict local storage; export backups periodically.
 
+## Lesson visuals
+
+Every available lesson includes an authored offline figure: beaker states, spike timelines, comparisons, curves, or mechanism diagrams. Lesson 23 has a tappable network architecture. Exploring a diagram does not award XP or record mastery. [Authoring notes](docs/lesson-figures.md) explain how to edit figures and regenerate the packs.
+
 ## What is included
 
 27 fully authored lessons: 25 from your brief plus Hodgkin–Huxley intuition and synapse models. Further topics are explicitly coming soon, including reproduction, ablations and formulating research questions. Two simulations: discrete hard-reset LIF and the numerical Izhikevich model with regular-spiking/chattering presets. Glossary, stats, 30-day heatmap, light/dark themes, reduced motion, optional synthesized sounds, per-card feedback and a contextual ChatGPT handoff.
@@ -68,7 +72,7 @@ Run `npm test`: schema and graph validation, numerical verification for every nu
 
 Optional paper links are stored in each lesson, outside its main teaching flow. Core references include Diehl & Cook (2015), Izhikevich (2003), Bellec et al. (2018), Neuronal Dynamics, and the snnTorch documentation. The 6.4% energy break-even figure is labeled a hypothetical setup because the brief did not identify the original study. The memory estimate `1/(1−ρ)` is explicitly approximate; exact e-fold time is `−1/ln(ρ)`. Delta exercises use at most one event per reading. LIF exercises explicitly state reset, input ordering and threshold assumptions where needed. Numerical results and browser emulation do not establish physical iPhone performance or research competency.
 
-## Verification for this build
+## Earlier baseline verification
 
 - Production build and TypeScript check passed.
 - 15 unit/content tests passed, including every numerical question and all packs.
@@ -81,3 +85,11 @@ Optional paper links are stored in each lesson, outside its main teaching flow. 
 See `docs/personal-first.md` for the product requirements and the user's validation evidence. Subscriptions, third-party product analytics, monetization, and unnecessary backend work are outside the current scope. Local learning evidence remains part of the review engine.
 
 The Get Spike on your iPhone action now contains the actual deployed link, a copy action, and a desktop QR code. The QR is generated inside the app without an external service. For a different deployment origin, set `VITE_APP_URL` to that HTTPS URL before building; otherwise it points to the existing private Spike site.
+
+## Lesson UI update · November 24, 2026
+
+Removed generic lesson headings, authoring notes, and motivational filler from the lesson shell and main screens. Added diagrams to all 27 authored lessons, corrected lesson 23’s network and label-assignment explanation, and added top safe-area padding. Kept existing progress, review scheduling, and backup formats.
+
+Production build, 16 unit/content checks, and the 8-flow browser suite passed. The diagram corrections also passed a focused lesson-flow rerun and independent visual review of the two identified fixes. The earlier Lighthouse scores above were not rerun for this update. Physical iPhone safe-area behavior still needs device feedback.
+
+To load an update on an installed PWA, close every open Spike window/tab, then reopen online. Its service worker waits for old windows to close; clearing site data is unnecessary and would remove local progress.

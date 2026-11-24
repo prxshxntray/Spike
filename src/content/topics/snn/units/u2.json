@@ -13,17 +13,29 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "After tipping, imagine the beaker’s inlet temporarily closed. During an absolute refractory interval it cannot fire again. Relative refractoriness instead makes firing harder."
+          "title": "A pause after the spike",
+          "body": "After tipping, imagine the beaker’s inlet temporarily closed. During an absolute refractory interval it cannot fire again. Relative refractoriness instead makes firing harder.",
+          "diagram": {
+            "kind": "spikes",
+            "title": "A minimum gap between spikes",
+            "caption": "With a 4 ms minimum separation, the ceiling is 250 spikes/s. Each position here represents 1 ms.",
+            "items": [
+              {
+                "label": "Earliest train",
+                "value": 0,
+                "note": "1,5,9"
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Four milliseconds between spikes",
           "body": "Under a convention where successive spikes must be at least 4 ms apart, the ceiling is 1 / 0.004 = 250 spikes/s. Additional charging time can lower the actual rate."
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "f_{\\max}\\leq\\frac{1}{t_{\\mathrm{ref}}}"
@@ -129,17 +141,34 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "Rate coding reads how many times the beaker tips in a window. It discards exact spike timing when only the count is decoded."
+          "title": "Count the tips",
+          "body": "Rate coding reads how many times the beaker tips in a window. It discards exact spike timing when only the count is decoded.",
+          "diagram": {
+            "kind": "spikes",
+            "title": "Different times, equal counts",
+            "caption": "Both trains contain three spikes in the same ten-step window.",
+            "items": [
+              {
+                "label": "Train A",
+                "value": 0,
+                "note": "2,5,9"
+              },
+              {
+                "label": "Train B",
+                "value": 0,
+                "note": "1,6,10"
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Same count, different timing",
           "body": "Spikes at steps 2, 5, 9 and at 1, 6, 10 both encode count 3 in a 10-step window."
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "r=\\frac{N}{T\\Delta t}"
@@ -241,17 +270,34 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "Start the beakers together. With a suitable encoder, a stronger pour reaches the line earlier. The first tip time carries the value."
+          "title": "Earlier can mean stronger",
+          "body": "Start the beakers together. With a suitable encoder, a stronger pour reaches the line earlier. The first tip time carries the value.",
+          "diagram": {
+            "kind": "spikes",
+            "title": "The first event carries the value",
+            "caption": "For this earlier-is-stronger encoder, A represents the stronger input. Each position is 1 ms.",
+            "items": [
+              {
+                "label": "Input A",
+                "value": 0,
+                "note": "3"
+              },
+              {
+                "label": "Input B",
+                "value": 0,
+                "note": "8"
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Read the first spike",
           "body": "In one latency encoder, input A first spikes at 3 ms and B at 8 ms. A represents the stronger input under this encoder’s earlier-is-stronger rule."
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "t_{\\mathrm{first}}=\\min\\{t:s(t)=1\\}"
@@ -378,12 +424,34 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "You now have a beaker, a clock, a sticky note, and a learning proxy. Pick the right model before doing arithmetic."
+          "title": "Checkpoint · the spiking neuron",
+          "body": "You now have a beaker, a clock, a sticky note, and a learning proxy. Pick the right model before doing arithmetic.",
+          "diagram": {
+            "kind": "flow",
+            "title": "Three different questions",
+            "caption": "Choose the state or count that the question asks for.",
+            "items": [
+              {
+                "label": "Membrane",
+                "value": 0,
+                "note": "Previous voltage × β + input"
+              },
+              {
+                "label": "Delta reference",
+                "value": 0,
+                "note": "Last sent value ± one threshold"
+              },
+              {
+                "label": "SynOps",
+                "value": 0,
+                "note": "Spike count × fan-out"
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Choose the right state before calculating",
           "body": "For a membrane recurrence, multiply the previous state by β. For delta encoding, compare with the last sent reference. These are different states."
         }
       ],

@@ -13,17 +13,39 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "The beaker now has several gated pipes. Each pipe’s flow depends on its opening and on the difference between water level and that pipe’s preferred level. This is a conceptual analogy for conductances and reversal potentials."
+          "title": "Channels are changing gates",
+          "body": "The beaker now has several gated pipes. Each pipe’s flow depends on its opening and on the difference between water level and that pipe’s preferred level. This is a conceptual analogy for conductances and reversal potentials.",
+          "diagram": {
+            "kind": "flow",
+            "title": "An open channel still needs a driving force",
+            "caption": "Outward-positive current: I = g(V−E).",
+            "items": [
+              {
+                "label": "Conductance g",
+                "value": 0,
+                "note": "How open the pathway is."
+              },
+              {
+                "label": "Driving force V−E",
+                "value": 0,
+                "note": "How far voltage is from reversal."
+              },
+              {
+                "label": "At V = E",
+                "value": 0,
+                "note": "No net current through that channel."
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Current depends on the driving force",
           "body": "With conductance g = 2 and voltage difference V − E = 3, outward current is 6 in consistent units. At V = E, net current through that channel is zero even if the channel is open."
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "I_{\\mathrm{ion}}=g(V-E)",
@@ -134,17 +156,34 @@
       "cards": [
         {
           "kind": "analogy",
-          "title": "Start with the beaker",
-          "body": "A synaptic event can open a tap whose flow fades. In a current-based model the injected current is specified directly. In a conductance-based model, flow also depends on the beaker’s present level relative to a reversal level."
+          "title": "A synapse has a shape in time",
+          "body": "A synaptic event can open a tap whose flow fades. In a current-based model the injected current is specified directly. In a conductance-based model, flow also depends on the beaker’s present level relative to a reversal level.",
+          "diagram": {
+            "kind": "bars",
+            "title": "Same channel, smaller driving force",
+            "caption": "With g = 0.5, inward-positive current follows E−V.",
+            "items": [
+              {
+                "label": "E−V = 4",
+                "value": 2,
+                "note": "Current 2"
+              },
+              {
+                "label": "E−V = 1",
+                "value": 0.5,
+                "note": "Current 0.5"
+              }
+            ]
+          }
         },
         {
           "kind": "numbers",
-          "title": "Make it concrete",
+          "title": "Same conductance, different current",
           "body": "If g = 0.5 and E − V = 4, inward-positive synaptic current is 2. If the voltage difference shrinks to 1, the same conductance produces 0.5."
         },
         {
           "kind": "equation",
-          "title": "Now give it symbols",
+          "title": "Write the rule",
           "body": "The symbols describe the example you just saw.",
           "steps": [
             "I_{\\mathrm{syn}}=g_{\\mathrm{syn}}(E_{\\mathrm{syn}}-V)",

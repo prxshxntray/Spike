@@ -3,3 +3,7 @@ dist/
 test-results/
 playwright-report/
 *.local
+
+__pycache__/
+
+.impeccable/review/
